@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,111 +14,132 @@
         * {
             font-family: 'Inter', sans-serif;
         }
-        
+
         body {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             color: #f1f5f9;
             overflow-x: hidden;
         }
-        
+
         .glass-card {
             background: rgba(30, 41, 59, 0.7);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
         }
-        
+
         .neon-text {
             color: #60a5fa;
             text-shadow: 0 0 10px rgba(96, 165, 250, 0.7);
         }
-        
+
         .skill-tag {
             transition: all 0.3s ease;
         }
-        
+
         .skill-tag:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(96, 165, 250, 0.3);
         }
-        
+
         .project-card {
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        
+
         .project-card:hover {
             transform: translateY(-12px) scale(1.02);
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
         }
-        
+
         .bento-grid {
             display: grid;
             gap: 1.5rem;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         }
-        
+
         .hero-image {
             border-radius: 50%;
             border: 3px solid rgba(96, 165, 250, 0.4);
             box-shadow: 0 0 30px rgba(96, 165, 250, 0.3);
         }
-        
+
         .section-divider {
             height: 3px;
             background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.7), transparent);
         }
-        
+
         /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 10px;
         }
-        
+
         ::-webkit-scrollbar-track {
             background: #1e293b;
         }
-        
+
         ::-webkit-scrollbar-thumb {
             background: linear-gradient(to bottom, #60a5fa, #3b82f6);
             border-radius: 5px;
         }
-        
+
         ::-webkit-scrollbar-thumb:hover {
             background: linear-gradient(to bottom, #3b82f6, #2563eb);
         }
-        
+
         /* Smooth scrolling */
         html {
             scroll-behavior: smooth;
         }
-        
+
         /* Animations */
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
+
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
-        
+
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
         }
-        
+
         .fade-in-up {
             animation: fadeInUp 0.8s ease-out forwards;
         }
-        
+
         .float {
             animation: float 6s ease-in-out infinite;
         }
-        
+
         .pulse {
             animation: pulse 2s ease-in-out infinite;
         }
-        
+
         /* Active menu item */
         .nav-link {
             position: relative;
@@ -125,12 +147,12 @@
             transition: all 0.3s ease;
             border-radius: 8px;
         }
-        
+
         .nav-link.active {
             color: #60a5fa;
             background: rgba(96, 165, 250, 0.1);
         }
-        
+
         .nav-link.active::after {
             content: '';
             position: absolute;
@@ -142,7 +164,7 @@
             border-radius: 3px;
             box-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
         }
-        
+
         .nav-link:hover::after {
             content: '';
             position: absolute;
@@ -154,7 +176,7 @@
             border-radius: 2px;
             opacity: 0.7;
         }
-        
+
         /* Mobile menu active item */
         .mobile-nav-link.active {
             color: #60a5fa;
@@ -163,20 +185,20 @@
             padding-left: 16px;
             border-left: 4px solid #60a5fa;
         }
-        
+
         /* Skill progress bars */
         .skill-bar {
             height: 10px;
             border-radius: 5px;
             overflow: hidden;
         }
-        
+
         .skill-progress {
             height: 100%;
             border-radius: 5px;
             transition: width 1.5s ease-in-out;
         }
-        
+
         /* Project card overlay */
         .project-overlay {
             position: absolute;
@@ -191,17 +213,17 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         .project-card:hover .project-overlay {
             opacity: 1;
         }
-        
+
         /* Education card enhancements */
         .education-card {
             position: relative;
             overflow: hidden;
         }
-        
+
         .education-card::before {
             content: '';
             position: absolute;
@@ -211,7 +233,7 @@
             height: 5px;
             background: linear-gradient(90deg, #60a5fa, #3b82f6);
         }
-        
+
         /* Floating elements */
         .floating-element {
             position: absolute;
@@ -236,46 +258,57 @@
         }
     </style>
 </head>
+
 <body class="min-h-screen">
     <!-- Floating background elements -->
     <div class="floating-element w-64 h-64 bg-blue-500 top-20 left-10 float"></div>
     <div class="floating-element w-96 h-96 bg-purple-500 bottom-40 right-10 float" style="animation-delay: 2s;"></div>
     <div class="floating-element w-80 h-80 bg-cyan-500 top-1/2 left-1/3 float" style="animation-delay: 4s;"></div>
-    
+
     <!-- Header & Navigation -->
     <header class="sticky top-0 z-50 glass-card py-3">
         <div class="container mx-auto px-6">
             <div class="flex justify-between items-center">
                 <div class="text-xl font-bold neon-text pulse">Nguyễn Tất Ngọc</div>
-                
+
                 <!-- Mobile menu button -->
-                <button id="mobile-menu-btn" class="md:hidden text-2xl p-2 rounded-lg hover:bg-gray-800 transition-colors duration-300">
+                <button id="mobile-menu-btn"
+                    class="md:hidden text-2xl p-2 rounded-lg hover:bg-gray-800 transition-colors duration-300">
                     <i class="fas fa-bars"></i>
                 </button>
-                
+
                 <!-- Desktop menu -->
                 <nav class="hidden md:flex items-center space-x-2">
                     <a href="#home" class="nav-link hover:text-blue-400 transition-all duration-300 active">Home</a>
                     <a href="#about" class="nav-link hover:text-blue-400 transition-all duration-300">About</a>
-                    <a href="#experience" class="nav-link hover:text-blue-400 transition-all duration-300">Experience</a>
+                    <a href="#experience"
+                        class="nav-link hover:text-blue-400 transition-all duration-300">Experience</a>
                     <a href="#skills" class="nav-link hover:text-blue-400 transition-all duration-300">Skills</a>
                     <a href="#projects" class="nav-link hover:text-blue-400 transition-all duration-300">Projects</a>
                     <a href="#education" class="nav-link hover:text-blue-400 transition-all duration-300">Education</a>
-                    <a href="assets/cv.pdf" target="_blank" class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-5 py-2.5 rounded-lg transition-all duration-300 ml-4 inline-flex items-center shadow-lg hover:shadow-xl">
+                    <a href="assets/cv.pdf" target="_blank"
+                        class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-5 py-2.5 rounded-lg transition-all duration-300 ml-4 inline-flex items-center shadow-lg hover:shadow-xl">
                         <i class="fas fa-file-pdf mr-2"></i>Xem CV
                     </a>
                 </nav>
             </div>
-            
+
             <!-- Mobile menu -->
             <div id="mobile-menu" class="hidden md:hidden mt-4 pb-2 space-y-2">
-                <a href="#home" class="mobile-nav-link block hover:text-blue-400 transition-colors duration-300 py-3 px-4 active">Home</a>
-                <a href="#about" class="mobile-nav-link block hover:text-blue-400 transition-colors duration-300 py-3 px-4">About</a>
-                <a href="#experience" class="mobile-nav-link block hover:text-blue-400 transition-colors duration-300 py-3 px-4">Experience</a>
-                <a href="#skills" class="mobile-nav-link block hover:text-blue-400 transition-colors duration-300 py-3 px-4">Skills</a>
-                <a href="#projects" class="mobile-nav-link block hover:text-blue-400 transition-colors duration-300 py-3 px-4">Projects</a>
-                <a href="#education" class="mobile-nav-link block hover:text-blue-400 transition-colors duration-300 py-3 px-4">Education</a>
-                <a href="assets/cv.pdf" target="_blank" class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-4 py-3 rounded-lg transition-all duration-300 w-full mt-4 inline-flex items-center justify-center shadow-lg">
+                <a href="#home"
+                    class="mobile-nav-link block hover:text-blue-400 transition-colors duration-300 py-3 px-4 active">Home</a>
+                <a href="#about"
+                    class="mobile-nav-link block hover:text-blue-400 transition-colors duration-300 py-3 px-4">About</a>
+                <a href="#experience"
+                    class="mobile-nav-link block hover:text-blue-400 transition-colors duration-300 py-3 px-4">Experience</a>
+                <a href="#skills"
+                    class="mobile-nav-link block hover:text-blue-400 transition-colors duration-300 py-3 px-4">Skills</a>
+                <a href="#projects"
+                    class="mobile-nav-link block hover:text-blue-400 transition-colors duration-300 py-3 px-4">Projects</a>
+                <a href="#education"
+                    class="mobile-nav-link block hover:text-blue-400 transition-colors duration-300 py-3 px-4">Education</a>
+                <a href="assets/cv.pdf" target="_blank"
+                    class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-4 py-3 rounded-lg transition-all duration-300 w-full mt-4 inline-flex items-center justify-center shadow-lg">
                     <i class="fas fa-file-pdf mr-2"></i>Xem CV
                 </a>
             </div>
@@ -293,12 +326,13 @@
                     <div class="text-xl md:text-2xl mb-6 text-gray-300">
                         Full-stack Developer
                     </div>
-                    <div class="text-lg mb-10 text-gray-400 max-w-xl bg-gradient-to-r from-gray-800 to-gray-900 p-6 rounded-2xl border border-gray-700">
+                    <div
+                        class="text-lg mb-10 text-gray-400 max-w-xl bg-gradient-to-r from-gray-800 to-gray-900 p-6 rounded-2xl border border-gray-700">
                         <i class="fas fa-quote-left text-blue-400 mr-2"></i>
                         "Hiện thực hóa ý tưởng bằng tư duy hệ thống và những dòng code sạch."
                         <i class="fas fa-quote-right text-blue-400 ml-2"></i>
                     </div>
-                    
+
                     <div class="flex flex-wrap gap-4 mb-8">
                         <div class="flex items-center gap-3 bg-gray-800/50 px-4 py-3 rounded-xl">
                             <i class="fas fa-envelope text-blue-400 text-xl"></i>
@@ -317,25 +351,32 @@
                             <span>22/09/2004</span>
                         </div>
                     </div>
-                    
+
                     <div class="flex space-x-6">
-                        <a href="mailto:nguyentatngoc110022@gmail.com" class="text-3xl hover:text-blue-400 transition-all duration-300 hover:scale-110" title="Email">
+                        <a href="mailto:nguyentatngoc110022@gmail.com"
+                            class="text-3xl hover:text-blue-400 transition-all duration-300 hover:scale-110"
+                            title="Email">
                             <i class="fas fa-envelope"></i>
                         </a>
-                        <a href="https://github.com/Ngoc2204" target="_blank" class="text-3xl hover:text-blue-400 transition-all duration-300 hover:scale-110" title="GitHub">
+                        <a href="https://github.com/Ngoc2204" target="_blank"
+                            class="text-3xl hover:text-blue-400 transition-all duration-300 hover:scale-110"
+                            title="GitHub">
                             <i class="fab fa-github"></i>
                         </a>
                     </div>
                 </div>
-                
+
                 <div class="md:w-1/2 flex justify-center fade-in-up" style="animation-delay: 0.2s;">
                     <div class="relative">
                         <div class="hero-image w-72 h-72 md:w-96 md:h-96 overflow-hidden relative">
                             <img src="assets/img.jpg" alt="Nguyễn Tất Ngọc" class="w-full h-full object-cover">
-                            
+
                         </div>
-                        <div class="absolute -top-4 -right-4 w-20 h-20 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 opacity-70 pulse"></div>
-                        <div class="absolute -bottom-4 -left-4 w-24 h-24 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 opacity-70 pulse" style="animation-delay: 1s;"></div>
+                        <div
+                            class="absolute -top-4 -right-4 w-20 h-20 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 opacity-70 pulse">
+                        </div>
+                        <div class="absolute -bottom-4 -left-4 w-24 h-24 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 opacity-70 pulse"
+                            style="animation-delay: 1s;"></div>
                     </div>
                 </div>
             </div>
@@ -348,9 +389,10 @@
             <div class="text-center mb-16 fade-in-up">
                 <h2 class="text-4xl md:text-5xl font-bold mb-4">About Me</h2>
                 <div class="section-divider w-32 mx-auto"></div>
-                <p class="text-gray-400 mt-6 max-w-2xl mx-auto">Lập trình viên đam mê công nghệ với tư duy giải quyết vấn đề sáng tạo</p>
+                <p class="text-gray-400 mt-6 max-w-2xl mx-auto">Lập trình viên đam mê công nghệ với tư duy giải quyết
+                    vấn đề sáng tạo</p>
             </div>
-            
+
             <div class="glass-card rounded-3xl p-10 max-w-5xl mx-auto fade-in-up" style="animation-delay: 0.2s;">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                     <div>
@@ -360,14 +402,18 @@
                             </div>
                             Chuyên môn kỹ thuật
                         </h3>
-                        <p class="text-lg text-gray-300 mb-6">
-                            Là một <strong class="text-blue-400">Full-stack Developer</strong> với thế mạnh về <strong class="text-blue-400">Laravel</strong> và <strong class="text-blue-400">Flutter</strong>, tôi tập trung phát triển các sản phẩm trọn vẹn từ Backend vững chắc đến trải nghiệm Mobile mượt mà.
+                <p class="text-lg text-gray-300 mb-6">
+                            Là một <strong class="text-blue-400">Full-stack Developer</strong> với thế mạnh về <strong
+                        class="text-blue-400">Laravel</strong> và <strong
+                                class="text-blue-400">Flutter</strong>, tôi tập trung phát triển các sản phẩm trọn vẹn
+                            từ Backend vững chắc đến trải nghiệm Mobile mượt mà.
                         </p>
                         <p class="text-lg text-gray-300">
-                            Với tôi, lập trình không chỉ là viết code, mà là tư duy đưa ra giải pháp tối ưu cho người dùng.
+                            Với tôi, lập trình không chỉ là viết code, mà là tư duy đưa ra giải pháp tối ưu cho người
+                            dùng.
                         </p>
                     </div>
-                    
+
                     <div>
                         <h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
                             <div class="w-10 h-10 rounded-lg bg-purple-900/50 flex items-center justify-center">
@@ -376,10 +422,13 @@
                             Tư duy phát triển
                         </h3>
                         <p class="text-lg text-gray-300 mb-6">
-                            Tôi đã có kinh nghiệm thực tế trong việc thiết kế CSDL, xây dựng RESTful API và hoàn thiện giao diện ứng dụng.
+                            Tôi đã có kinh nghiệm thực tế trong việc thiết kế CSDL, xây dựng RESTful API và hoàn thiện
+                            giao diện ứng dụng.
                         </p>
                         <p class="text-lg text-gray-300">
-                            Đặc biệt, tôi luôn giữ tinh thần cầu tiến (Growth Mindset), <strong class="text-purple-400">sẵn sàng học hỏi công nghệ mới</strong> và không ngại thử thách để nâng cao năng lực chuyên môn mỗi ngày.
+                            Đặc biệt, tôi luôn giữ tinh thần cầu tiến (Growth Mindset), <strong
+                                class="text-purple-400">sẵn sàng học hỏi công nghệ mới</strong> và không ngại thử thách
+                            để nâng cao năng lực chuyên môn mỗi ngày.
                         </p>
                     </div>
                 </div>
@@ -388,142 +437,154 @@
     </section>
 
     <!-- Experience Section -->
-<section id="experience" class="py-20">
-    <div class="container mx-auto px-6">
-        <div class="text-center mb-16 fade-in-up">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4">Kinh Nghiệm Làm Việc</h2>
-            <div class="section-divider w-32 mx-auto"></div>
-            <p class="text-gray-400 mt-6 max-w-2xl mx-auto">Trải nghiệm thực tế trong môi trường chuyên nghiệp</p>
-        </div>
-        
-        <div class="glass-card rounded-3xl p-10 max-w-5xl mx-auto fade-in-up" style="animation-delay: 0.2s;">
-            <div class="flex flex-col lg:flex-row items-start gap-12">
-                <div class="lg:w-1/3">
-                    <div class="bg-gradient-to-br from-blue-900 to-blue-700 rounded-2xl p-8 h-full">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="w-16 h-16 rounded-xl bg-white/10 flex items-center justify-center">
-                                <i class="fas fa-briefcase text-3xl text-blue-300"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold">Thực tập sinh</h3>
-                                <p class="text-blue-200 text-lg">Mobile Developer</p>
-                            </div>
-                        </div>
-                        
-                        <div class="space-y-6">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-lg bg-blue-800/50 flex items-center justify-center">
-                                    <i class="fas fa-building text-blue-300"></i>
+    <section id="experience" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Kinh Nghiệm Làm Việc</h2>
+                <div class="section-divider w-32 mx-auto"></div>
+                <p class="text-gray-400 mt-6 max-w-2xl mx-auto">Trải nghiệm thực tế trong môi trường chuyên nghiệp</p>
+            </div>
+
+            <div class="glass-card rounded-3xl p-10 max-w-5xl mx-auto fade-in-up" style="animation-delay: 0.2s;">
+                <div class="flex flex-col lg:flex-row items-start gap-12">
+                    <div class="lg:w-1/3">
+                        <div class="bg-gradient-to-br from-blue-900 to-blue-700 rounded-2xl p-8 h-full">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-16 h-16 rounded-xl bg-white/10 flex items-center justify-center">
+                                    <i class="fas fa-briefcase text-3xl text-blue-300"></i>
                                 </div>
                                 <div>
-                                    <div class="text-sm text-blue-200">Công ty</div>
-                                    <div class="font-bold">TNHH Phần mềm Quốc Bảo</div>
+                                    <h3 class="text-2xl font-bold">Thực tập sinh</h3>
+                                    <p class="text-blue-200 text-lg">Mobile Developer</p>
                                 </div>
                             </div>
-                            
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-lg bg-blue-800/50 flex items-center justify-center">
-                                    <i class="fas fa-calendar-alt text-blue-300"></i>
+
+                            <div class="space-y-6">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-blue-800/50 flex items-center justify-center">
+                                        <i class="fas fa-building text-blue-300"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm text-blue-200">Công ty</div>
+                                        <div class="font-bold">TNHH Phần mềm Quốc Bảo</div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <div class="text-sm text-blue-200">Thời gian</div>
-                                    <div class="font-bold">06/2025 - 09/2025</div>
+
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-blue-800/50 flex items-center justify-center">
+                                        <i class="fas fa-calendar-alt text-blue-300"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm text-blue-200">Thời gian</div>
+                                        <div class="font-bold">06/2025 - 09/2025</div>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-lg bg-blue-800/50 flex items-center justify-center">
-                                    <i class="fas fa-clock text-blue-300"></i>
-                                </div>
-                                <div>
-                                    <div class="text-sm text-blue-200">Thời lượng</div>
-                                    <div class="font-bold">3 tháng</div>
+
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-blue-800/50 flex items-center justify-center">
+                                        <i class="fas fa-clock text-blue-300"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm text-blue-200">Thời lượng</div>
+                                        <div class="font-bold">3 tháng</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="lg:w-2/3">
-                    <h3 class="text-3xl font-bold mb-6 flex items-center gap-3">
-                        <i class="fas fa-mobile-alt text-purple-400"></i>
-                        Mobile Developer (Flutter)
-                    </h3>
-                    
-                    <div class="mb-8">
-                        <h4 class="text-xl font-bold mb-4 flex items-center gap-2">
-                            <i class="fas fa-tasks text-green-400"></i>
-                            Nhiệm vụ & Trách nhiệm
-                        </h4>
-                        <div class="space-y-4">
-                            <div class="flex items-start gap-3">
-                                <div class="w-6 h-6 rounded-full bg-green-900/50 flex items-center justify-center mt-1">
-                                    <i class="fas fa-check text-green-400 text-xs"></i>
+
+                    <div class="lg:w-2/3">
+                        <h3 class="text-3xl font-bold mb-6 flex items-center gap-3">
+                            <i class="fas fa-mobile-alt text-purple-400"></i>
+                            Mobile Developer (Flutter)
+                        </h3>
+
+                        <div class="mb-8">
+                            <h4 class="text-xl font-bold mb-4 flex items-center gap-2">
+                                <i class="fas fa-tasks text-green-400"></i>
+                                Nhiệm vụ & Trách nhiệm
+                            </h4>
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-3">
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-green-900/50 flex items-center justify-center mt-1">
+                                        <i class="fas fa-check text-green-400 text-xs"></i>
+                                    </div>
+                                    <p class="text-gray-300">Phát triển ứng dụng mobile sử dụng Flutter framework</p>
                                 </div>
-                                <p class="text-gray-300">Phát triển ứng dụng mobile sử dụng Flutter framework</p>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <div class="w-6 h-6 rounded-full bg-green-900/50 flex items-center justify-center mt-1">
-                                    <i class="fas fa-check text-green-400 text-xs"></i>
+                                <div class="flex items-start gap-3">
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-green-900/50 flex items-center justify-center mt-1">
+                                        <i class="fas fa-check text-green-400 text-xs"></i>
+                                    </div>
+                                    <p class="text-gray-300">Xây dựng giao diện người dùng responsive và thân thiện</p>
                                 </div>
-                                <p class="text-gray-300">Xây dựng giao diện người dùng responsive và thân thiện</p>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <div class="w-6 h-6 rounded-full bg-green-900/50 flex items-center justify-center mt-1">
-                                    <i class="fas fa-check text-green-400 text-xs"></i>
+                                <div class="flex items-start gap-3">
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-green-900/50 flex items-center justify-center mt-1">
+                                        <i class="fas fa-check text-green-400 text-xs"></i>
+                                    </div>
+                                    <p class="text-gray-300">Kết nối và xử lý dữ liệu từ RESTful API</p>
                                 </div>
-                                <p class="text-gray-300">Kết nối và xử lý dữ liệu từ RESTful API</p>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <div class="w-6 h-6 rounded-full bg-green-900/50 flex items-center justify-center mt-1">
-                                    <i class="fas fa-check text-green-400 text-xs"></i>
+                                <div class="flex items-start gap-3">
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-green-900/50 flex items-center justify-center mt-1">
+                                        <i class="fas fa-check text-green-400 text-xs"></i>
+                                    </div>
+                                    <p class="text-gray-300">Tối ưu hiệu năng ứng dụng và xử lý lỗi</p>
                                 </div>
-                                <p class="text-gray-300">Tối ưu hiệu năng ứng dụng và xử lý lỗi</p>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <div class="w-6 h-6 rounded-full bg-green-900/50 flex items-center justify-center mt-1">
-                                    <i class="fas fa-check text-green-400 text-xs"></i>
+                                <div class="flex items-start gap-3">
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-green-900/50 flex items-center justify-center mt-1">
+                                        <i class="fas fa-check text-green-400 text-xs"></i>
+                                    </div>
+                                    <p class="text-gray-300">Tham gia vào quy trình phát triển Agile/Scrum</p>
                                 </div>
-                                <p class="text-gray-300">Tham gia vào quy trình phát triển Agile/Scrum</p>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="mb-8">
-                        <h4 class="text-xl font-bold mb-4 flex items-center gap-2">
-                            <i class="fas fa-cogs text-amber-400"></i>
-                            Công nghệ sử dụng
-                        </h4>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="skill-tag bg-purple-900/30 text-purple-300 px-4 py-2 rounded-lg border border-purple-700/50 flex items-center gap-2">
-                                <i class="fab fa-flutter"></i> Flutter
-                            </span>
-                            <span class="skill-tag bg-blue-900/30 text-blue-300 px-4 py-2 rounded-lg border border-blue-700/50 flex items-center gap-2">
-                                <i class="fas fa-code"></i> Dart
-                            </span>
-                            <span class="skill-tag bg-gray-800 text-gray-300 px-4 py-2 rounded-lg border border-gray-700 flex items-center gap-2">
-                                <i class="fas fa-code-branch"></i> REST API
-                            </span>
-                            <span class="skill-tag bg-green-900/30 text-green-300 px-4 py-2 rounded-lg border border-green-700/50 flex items-center gap-2">
-                                <i class="fab fa-git-alt"></i> Git
-                            </span>
+
+                        <div class="mb-8">
+                            <h4 class="text-xl font-bold mb-4 flex items-center gap-2">
+                                <i class="fas fa-cogs text-amber-400"></i>
+                                Công nghệ sử dụng
+                            </h4>
+                            <div class="flex flex-wrap gap-3">
+                                <span
+                                    class="skill-tag bg-purple-900/30 text-purple-300 px-4 py-2 rounded-lg border border-purple-700/50 flex items-center gap-2">
+                                    <i class="fab fa-flutter"></i> Flutter
+                                </span>
+                                <span
+                                    class="skill-tag bg-blue-900/30 text-blue-300 px-4 py-2 rounded-lg border border-blue-700/50 flex items-center gap-2">
+                                    <i class="fas fa-code"></i> Dart
+                                </span>
+                                <span
+                                    class="skill-tag bg-gray-800 text-gray-300 px-4 py-2 rounded-lg border border-gray-700 flex items-center gap-2">
+                                    <i class="fas fa-code-branch"></i> REST API
+                                </span>
+                                <span
+                                    class="skill-tag bg-green-900/30 text-green-300 px-4 py-2 rounded-lg border border-green-700/50 flex items-center gap-2">
+                                    <i class="fab fa-git-alt"></i> Git
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div>
-                        <h4 class="text-xl font-bold mb-4 flex items-center gap-2">
-                            <i class="fas fa-graduation-cap text-blue-400"></i>
-                            Kinh nghiệm thu được
-                        </h4>
-                        <p class="text-gray-300">
-                            Qua đợt thực tập tại Quốc Bảo Software, tôi đã có cơ hội áp dụng kiến thức lý thuyết vào dự án thực tế, nâng cao kỹ năng phát triển ứng dụng di động đa nền tảng với Flutter. Đồng thời, tôi học được cách làm việc trong môi trường chuyên nghiệp, tuân thủ quy trình phát triển phần mềm và hợp tác hiệu quả với team.
-                        </p>
+
+                        <div>
+                            <h4 class="text-xl font-bold mb-4 flex items-center gap-2">
+                                <i class="fas fa-graduation-cap text-blue-400"></i>
+                                Kinh nghiệm thu được
+                            </h4>
+                            <p class="text-gray-300">
+                                Qua đợt thực tập tại Quốc Bảo Software, tôi đã có cơ hội áp dụng kiến thức lý thuyết vào
+                                dự án thực tế, nâng cao kỹ năng phát triển ứng dụng di động đa nền tảng với Flutter.
+                                Đồng thời, tôi học được cách làm việc trong môi trường chuyên nghiệp, tuân thủ quy trình
+                                phát triển phần mềm và hợp tác hiệu quả với team.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Skills Section -->
     <section id="skills" class="py-20">
@@ -531,14 +592,16 @@
             <div class="text-center mb-16 fade-in-up">
                 <h2 class="text-4xl md:text-5xl font-bold mb-4">Kỹ Năng</h2>
                 <div class="section-divider w-32 mx-auto"></div>
-                <p class="text-gray-400 mt-6 max-w-2xl mx-auto">Sở hữu đa dạng kỹ năng từ Backend đến Frontend và Mobile Development</p>
+                <p class="text-gray-400 mt-6 max-w-2xl mx-auto">Sở hữu đa dạng kỹ năng từ Backend đến Frontend và Mobile
+                    Development</p>
             </div>
-            
+
             <div class="bento-grid">
                 <!-- Backend Skills -->
                 <div class="glass-card rounded-2xl p-8 fade-in-up" style="animation-delay: 0.1s;">
                     <div class="flex items-center gap-4 mb-6">
-                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center shadow-lg">
+                        <div
+                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center shadow-lg">
                             <i class="fas fa-server text-2xl text-blue-300"></i>
                         </div>
                         <div>
@@ -547,37 +610,46 @@
                         </div>
                     </div>
                     <div class="flex flex-wrap gap-3">
-                        <span class="skill-tag bg-blue-900/30 text-blue-300 px-4 py-2.5 rounded-lg border border-blue-700/50 flex items-center gap-2">
+                        <span
+                            class="skill-tag bg-blue-900/30 text-blue-300 px-4 py-2.5 rounded-lg border border-blue-700/50 flex items-center gap-2">
                             <i class="fab fa-php"></i> PHP
                         </span>
-                        <span class="skill-tag bg-blue-900/30 text-blue-300 px-4 py-2.5 rounded-lg border border-blue-700/50 flex items-center gap-2">
+                        <span
+                            class="skill-tag bg-blue-900/30 text-blue-300 px-4 py-2.5 rounded-lg border border-blue-700/50 flex items-center gap-2">
                             <i class="fab fa-java"></i> Java
                         </span>
-                        <span class="skill-tag bg-blue-900/30 text-blue-300 px-4 py-2.5 rounded-lg border border-blue-700/50 flex items-center gap-2">
+                        <span
+                            class="skill-tag bg-blue-900/30 text-blue-300 px-4 py-2.5 rounded-lg border border-blue-700/50 flex items-center gap-2">
                             <i class="fab fa-cuttlefish"></i> C/C++
                         </span>
-                        <span class="skill-tag bg-blue-900/30 text-blue-300 px-4 py-2.5 rounded-lg border border-blue-700/50 flex items-center gap-2">
-                            <i class="fab fa-microsoft"></i> C# 
+                        <span
+                            class="skill-tag bg-blue-900/30 text-blue-300 px-4 py-2.5 rounded-lg border border-blue-700/50 flex items-center gap-2">
+                            <i class="fab fa-microsoft"></i> C#
                         </span>
-                        <span class="skill-tag bg-blue-900/30 text-blue-300 px-4 py-2.5 rounded-lg border border-blue-700/50 flex items-center gap-2">
+                        <span
+                            class="skill-tag bg-blue-900/30 text-blue-300 px-4 py-2.5 rounded-lg border border-blue-700/50 flex items-center gap-2">
                             <i class="fas fa-fire"></i> Laravel
                         </span>
-                        <span class="skill-tag bg-blue-900/30 text-blue-300 px-4 py-2.5 rounded-lg border border-blue-700/50 flex items-center gap-2">
+                        <span
+                            class="skill-tag bg-blue-900/30 text-blue-300 px-4 py-2.5 rounded-lg border border-blue-700/50 flex items-center gap-2">
                             <i class="fas fa-database"></i> MySQL
                         </span>
-                        <span class="skill-tag bg-blue-900/30 text-blue-300 px-4 py-2.5 rounded-lg border border-blue-700/50 flex items-center gap-2">
+                        <span
+                            class="skill-tag bg-blue-900/30 text-blue-300 px-4 py-2.5 rounded-lg border border-blue-700/50 flex items-center gap-2">
                             <i class="fas fa-server"></i> SQL Server
                         </span>
-                        <span class="skill-tag bg-blue-900/30 text-blue-300 px-4 py-2.5 rounded-lg border border-blue-700/50 flex items-center gap-2">
+                        <span
+                            class="skill-tag bg-blue-900/30 text-blue-300 px-4 py-2.5 rounded-lg border border-blue-700/50 flex items-center gap-2">
                             <i class="fas fa-code-branch"></i> RESTful API
                         </span>
                     </div>
                 </div>
-                
+
                 <!-- Mobile Skills -->
                 <div class="glass-card rounded-2xl p-8 fade-in-up" style="animation-delay: 0.2s;">
                     <div class="flex items-center gap-4 mb-6">
-                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-900 to-purple-700 flex items-center justify-center shadow-lg">
+                        <div
+                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-900 to-purple-700 flex items-center justify-center shadow-lg">
                             <i class="fas fa-mobile-alt text-2xl text-purple-300"></i>
                         </div>
                         <div>
@@ -586,25 +658,30 @@
                         </div>
                     </div>
                     <div class="flex flex-wrap gap-3">
-                        <span class="skill-tag bg-purple-900/30 text-purple-300 px-4 py-2.5 rounded-lg border border-purple-700/50 flex items-center gap-2">
+                        <span
+                            class="skill-tag bg-purple-900/30 text-purple-300 px-4 py-2.5 rounded-lg border border-purple-700/50 flex items-center gap-2">
                             <i class="fab fa-flutter"></i> Flutter
                         </span>
-                        <span class="skill-tag bg-purple-900/30 text-purple-300 px-4 py-2.5 rounded-lg border border-purple-700/50 flex items-center gap-2">
+                        <span
+                            class="skill-tag bg-purple-900/30 text-purple-300 px-4 py-2.5 rounded-lg border border-purple-700/50 flex items-center gap-2">
                             <i class="fas fa-code"></i> Dart
                         </span>
-                        <span class="skill-tag bg-purple-900/30 text-purple-300 px-4 py-2.5 rounded-lg border border-purple-700/50 flex items-center gap-2">
+                        <span
+                            class="skill-tag bg-purple-900/30 text-purple-300 px-4 py-2.5 rounded-lg border border-purple-700/50 flex items-center gap-2">
                             <i class="fas fa-cube"></i> GetX
                         </span>
-                        <span class="skill-tag bg-purple-900/30 text-purple-300 px-4 py-2.5 rounded-lg border border-purple-700/50 flex items-center gap-2">
+                        <span
+                            class="skill-tag bg-purple-900/30 text-purple-300 px-4 py-2.5 rounded-lg border border-purple-700/50 flex items-center gap-2">
                             <i class="fas fa-box"></i> Provider
                         </span>
                     </div>
                 </div>
-                
+
                 <!-- Frontend & Tools -->
                 <div class="glass-card rounded-2xl p-8 fade-in-up" style="animation-delay: 0.3s;">
                     <div class="flex items-center gap-4 mb-6">
-                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-green-900 to-green-700 flex items-center justify-center shadow-lg">
+                        <div
+                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-green-900 to-green-700 flex items-center justify-center shadow-lg">
                             <i class="fas fa-code text-2xl text-green-300"></i>
                         </div>
                         <div>
@@ -613,29 +690,35 @@
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-3">
-                        <span class="skill-tag bg-green-900/30 text-green-300 px-4 py-2.5 rounded-lg border border-green-700/50 flex items-center justify-center gap-2">
+                        <span
+                            class="skill-tag bg-green-900/30 text-green-300 px-4 py-2.5 rounded-lg border border-green-700/50 flex items-center justify-center gap-2">
                             <i class="fab fa-html5"></i> HTML5
                         </span>
-                        <span class="skill-tag bg-green-900/30 text-green-300 px-4 py-2.5 rounded-lg border border-green-700/50 flex items-center justify-center gap-2">
+                        <span
+                            class="skill-tag bg-green-900/30 text-green-300 px-4 py-2.5 rounded-lg border border-green-700/50 flex items-center justify-center gap-2">
                             <i class="fab fa-css3-alt"></i> CSS3
                         </span>
-                        <span class="skill-tag bg-green-900/30 text-green-300 px-4 py-2.5 rounded-lg border border-green-700/50 flex items-center justify-center gap-2">
+                        <span
+                            class="skill-tag bg-green-900/30 text-green-300 px-4 py-2.5 rounded-lg border border-green-700/50 flex items-center justify-center gap-2">
                             <i class="fab fa-bootstrap"></i> Bootstrap
                         </span>
-                        <span class="skill-tag bg-green-900/30 text-green-300 px-4 py-2.5 rounded-lg border border-green-700/50 flex items-center justify-center gap-2">
+                        <span
+                            class="skill-tag bg-green-900/30 text-green-300 px-4 py-2.5 rounded-lg border border-green-700/50 flex items-center justify-center gap-2">
                             <i class="fas fa-wind"></i> Tailwind
                         </span>
-                        <span class="skill-tag bg-green-900/30 text-green-300 px-4 py-2.5 rounded-lg border border-green-700/50 flex items-center justify-center gap-2">
+                        <span
+                            class="skill-tag bg-green-900/30 text-green-300 px-4 py-2.5 rounded-lg border border-green-700/50 flex items-center justify-center gap-2">
                             <i class="fab fa-git-alt"></i> Git
                         </span>
-                        
+
                     </div>
                 </div>
-                
+
                 <!-- Soft Skills -->
                 <div class="glass-card rounded-2xl p-8 fade-in-up" style="animation-delay: 0.4s;">
                     <div class="flex items-center gap-4 mb-6">
-                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-900 to-amber-700 flex items-center justify-center shadow-lg">
+                        <div
+                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-900 to-amber-700 flex items-center justify-center shadow-lg">
                             <i class="fas fa-brain text-2xl text-amber-300"></i>
                         </div>
                         <div>
@@ -644,13 +727,16 @@
                         </div>
                     </div>
                     <div class="flex flex-wrap gap-3">
-                        <span class="skill-tag bg-amber-900/30 text-amber-300 px-4 py-2.5 rounded-lg border border-amber-700/50 flex items-center gap-2">
+                        <span
+                            class="skill-tag bg-amber-900/30 text-amber-300 px-4 py-2.5 rounded-lg border border-amber-700/50 flex items-center gap-2">
                             <i class="fas fa-lightbulb"></i> Tư duy logic
                         </span>
-                        <span class="skill-tag bg-amber-900/30 text-amber-300 px-4 py-2.5 rounded-lg border border-amber-700/50 flex items-center gap-2">
+                        <span
+                            class="skill-tag bg-amber-900/30 text-amber-300 px-4 py-2.5 rounded-lg border border-amber-700/50 flex items-center gap-2">
                             <i class="fas fa-puzzle-piece"></i> Giải quyết vấn đề
                         </span>
-                        <span class="skill-tag bg-amber-900/30 text-amber-300 px-4 py-2.5 rounded-lg border border-amber-700/50 flex items-center gap-2">
+                        <span
+                            class="skill-tag bg-amber-900/30 text-amber-300 px-4 py-2.5 rounded-lg border border-amber-700/50 flex items-center gap-2">
                             <i class="fas fa-users"></i> Làm việc nhóm
                         </span>
                     </div>
@@ -665,19 +751,24 @@
             <div class="text-center mb-16 fade-in-up">
                 <h2 class="text-4xl md:text-5xl font-bold mb-4">Dự Án Nổi Bật</h2>
                 <div class="section-divider w-32 mx-auto"></div>
-                <p class="text-gray-400 mt-6 max-w-2xl mx-auto">Các dự án thực tế thể hiện năng lực chuyên môn và tư duy giải quyết vấn đề</p>
+                <p class="text-gray-400 mt-6 max-w-2xl mx-auto">Các dự án thực tế thể hiện năng lực chuyên môn và tư duy
+                    giải quyết vấn đề</p>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <!-- Project 1 -->
-                <div class="project-card glass-card rounded-3xl overflow-hidden relative fade-in-up" style="animation-delay: 0.1s;">
-                    <div class="h-64 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 flex items-center justify-center relative">
+                <div class="project-card glass-card rounded-3xl overflow-hidden relative fade-in-up"
+                    style="animation-delay: 0.1s;">
+                    <div
+                        class="h-64 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 flex items-center justify-center relative">
                         <div class="text-6xl font-bold opacity-30">KLCN</div>
-                        <div class="absolute top-4 left-4 bg-blue-800/80 text-blue-200 px-4 py-2 rounded-full text-sm font-bold">
+                        <div
+                            class="absolute top-4 left-4 bg-blue-800/80 text-blue-200 px-4 py-2 rounded-full text-sm font-bold">
                             KHÓA LUẬN CỬ NHÂN
                         </div>
                         <div class="project-overlay">
-                            <a href="https://github.com/Ngoc2204/QuanLy_DiemRenLuyen_CTXH" target="_blank" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-bold hover:bg-blue-50 transition-colors duration-300">
+                            <a href="https://github.com/Ngoc2204/QuanLy_DiemRenLuyen_CTXH" target="_blank"
+                                class="bg-white text-blue-600 px-6 py-3 rounded-lg font-bold hover:bg-blue-50 transition-colors duration-300">
                                 <i class="fab fa-github mr-2"></i>Xem GitHub
                             </a>
                         </div>
@@ -685,34 +776,46 @@
                     <div class="p-8">
                         <h3 class="text-2xl font-bold mb-3">Hệ thống Quản lý Điểm rèn luyện & CTXH</h3>
                         <div class="flex flex-wrap gap-2 mb-5">
-                            <span class="bg-blue-900/40 text-blue-300 px-3 py-1.5 rounded-full text-sm font-medium">Laravel</span>
-                            <span class="bg-purple-900/40 text-purple-300 px-3 py-1.5 rounded-full text-sm font-medium">Flutter</span>
-                            <span class="bg-green-900/40 text-green-300 px-3 py-1.5 rounded-full text-sm font-medium">MySQL</span>
-                            <span class="bg-gray-800 text-gray-300 px-3 py-1.5 rounded-full text-sm font-medium">REST API</span>
+                            <span
+                                class="bg-blue-900/40 text-blue-300 px-3 py-1.5 rounded-full text-sm font-medium">Laravel</span>
+                            <span
+                                class="bg-purple-900/40 text-purple-300 px-3 py-1.5 rounded-full text-sm font-medium">Flutter</span>
+                            <span
+                                class="bg-green-900/40 text-green-300 px-3 py-1.5 rounded-full text-sm font-medium">MySQL</span>
+                            <span class="bg-gray-800 text-gray-300 px-3 py-1.5 rounded-full text-sm font-medium">REST
+                                API</span>
                         </div>
                         <p class="text-gray-300 mb-6 leading-relaxed">
-                            <span class="font-bold text-blue-400">Vai trò: Full-stack Developer & Trưởng nhóm.</span><br>
-                            Số hóa toàn bộ quy trình quản lý điểm rèn luyện, thay thế phương thức thủ công. Xây dựng Web Admin và Mobile App hoàn chỉnh với giao diện thân thiện, dễ sử dụng.
+                            <span class="font-bold text-blue-400">Vai trò: Full-stack Developer & Trưởng
+                                nhóm.</span><br>
+                            Số hóa toàn bộ quy trình quản lý điểm rèn luyện, thay thế phương thức thủ công. Xây dựng Web
+                            Admin và Mobile App hoàn chỉnh với giao diện thân thiện, dễ sử dụng.
                         </p>
                         <div class="flex justify-between items-center pt-4 border-t border-gray-700">
                             <div class="flex items-center gap-2 text-sm text-gray-400">
                                 <i class="fas fa-calendar-alt"></i>
                                 <span>2024 - 2025</span>
                             </div>
-                            <span class="text-sm font-medium bg-blue-900/30 text-blue-300 px-3 py-1 rounded-full">Full-stack Project</span>
+                            <span
+                                class="text-sm font-medium bg-blue-900/30 text-blue-300 px-3 py-1 rounded-full">Full-stack
+                                Project</span>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Project 2 -->
-                <div class="project-card glass-card rounded-3xl overflow-hidden relative fade-in-up" style="animation-delay: 0.3s;">
-                    <div class="h-64 bg-gradient-to-br from-purple-900 via-purple-800 to-purple-700 flex items-center justify-center relative">
+                <div class="project-card glass-card rounded-3xl overflow-hidden relative fade-in-up"
+                    style="animation-delay: 0.3s;">
+                    <div
+                        class="h-64 bg-gradient-to-br from-purple-900 via-purple-800 to-purple-700 flex items-center justify-center relative">
                         <div class="text-6xl font-bold opacity-30">NCKH</div>
-                        <div class="absolute top-4 left-4 bg-purple-800/80 text-purple-200 px-4 py-2 rounded-full text-sm font-bold">
+                        <div
+                            class="absolute top-4 left-4 bg-purple-800/80 text-purple-200 px-4 py-2 rounded-full text-sm font-bold">
                             NGHIÊN CỨU KHOA HỌC
                         </div>
                         <div class="project-overlay">
-                            <a href="assets/chungnhan.pdf" target="_blank" class="bg-white text-purple-600 px-6 py-3 rounded-lg font-bold hover:bg-purple-50 transition-colors duration-300">
+                            <a href="assets/chungnhan.pdf" target="_blank"
+                                class="bg-white text-purple-600 px-6 py-3 rounded-lg font-bold hover:bg-purple-50 transition-colors duration-300">
                                 <i class="fas fa-file-pdf mr-2"></i>Xem Chứng nhận
                             </a>
                         </div>
@@ -720,21 +823,30 @@
                     <div class="p-8">
                         <h3 class="text-2xl font-bold mb-3">Hệ thống Gợi ý hoạt động ngoại khóa</h3>
                         <div class="flex flex-wrap gap-2 mb-5">
-                            <span class="bg-blue-900/40 text-blue-300 px-3 py-1.5 rounded-full text-sm font-medium">Data Science</span>
-                            <span class="bg-green-900/40 text-green-300 px-3 py-1.5 rounded-full text-sm font-medium">Python</span>
-                            <span class="bg-amber-900/40 text-amber-300 px-3 py-1.5 rounded-full text-sm font-medium">Machine Learning</span>
-                            <span class="bg-gray-800 text-gray-300 px-3 py-1.5 rounded-full text-sm font-medium">Recommendation</span>
+                            <span class="bg-blue-900/40 text-blue-300 px-3 py-1.5 rounded-full text-sm font-medium">Data
+                                Science</span>
+                            <span
+                                class="bg-green-900/40 text-green-300 px-3 py-1.5 rounded-full text-sm font-medium">Python</span>
+                            <span
+                                class="bg-amber-900/40 text-amber-300 px-3 py-1.5 rounded-full text-sm font-medium">Machine
+                                Learning</span>
+                            <span
+                                class="bg-gray-800 text-gray-300 px-3 py-1.5 rounded-full text-sm font-medium">Recommendation</span>
                         </div>
                         <p class="text-gray-300 mb-6 leading-relaxed">
                             <span class="font-bold text-purple-400">Vai trò: Trưởng nhóm.</span><br>
-                            Hệ thống gợi ý cá nhân hóa dựa trên sở thích và mục tiêu kỹ năng của sinh viên. Ứng dụng thuật toán Machine Learning để phân tích và đề xuất hoạt động phù hợp. Dự án lọt vào <strong>Vòng Chung kết cấp khoa CNTT</strong>.
+                            Hệ thống gợi ý cá nhân hóa dựa trên sở thích và mục tiêu kỹ năng của sinh viên. Ứng dụng
+                            thuật toán Machine Learning để phân tích và đề xuất hoạt động phù hợp. Dự án lọt vào
+                            <strong>Vòng Chung kết cấp khoa CNTT</strong>.
                         </p>
                         <div class="flex justify-between items-center pt-4 border-t border-gray-700">
                             <div class="flex items-center gap-2 text-sm text-gray-400">
                                 <i class="fas fa-award"></i>
                                 <span>Chung kết cấp khoa</span>
                             </div>
-                            <span class="text-sm font-medium bg-purple-900/30 text-purple-300 px-3 py-1 rounded-full">Data Science Project</span>
+                            <span
+                                class="text-sm font-medium bg-purple-900/30 text-purple-300 px-3 py-1 rounded-full">Data
+                                Science Project</span>
                         </div>
                     </div>
                 </div>
@@ -748,32 +860,35 @@
             <div class="text-center mb-16 fade-in-up">
                 <h2 class="text-4xl md:text-5xl font-bold mb-4">Học Vấn</h2>
                 <div class="section-divider w-32 mx-auto"></div>
-                <p class="text-gray-400 mt-6 max-w-2xl mx-auto">Nền tảng học thuật vững chắc kết hợp với kinh nghiệm thực tiễn</p>
+                <p class="text-gray-400 mt-6 max-w-2xl mx-auto">Nền tảng học thuật vững chắc kết hợp với kinh nghiệm
+                    thực tiễn</p>
             </div>
-            
-            <div class="education-card glass-card rounded-3xl p-10 max-w-5xl mx-auto fade-in-up" style="animation-delay: 0.2s;">
+
+            <div class="education-card glass-card rounded-3xl p-10 max-w-5xl mx-auto fade-in-up"
+                style="animation-delay: 0.2s;">
                 <div class="flex flex-col lg:flex-row items-center gap-12">
                     <div class="lg:w-2/5 flex flex-col items-center">
-                        <div class="w-48 h-48 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 overflow-hidden flex items-center justify-center mb-6 p-4 border-4 border-blue-500/30">
-                            <img src="assets/huit.png" alt="Logo HUIT" 
-                                class="w-full h-full object-contain"
+                        <div
+                            class="w-48 h-48 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 overflow-hidden flex items-center justify-center mb-6 p-4 border-4 border-blue-500/30">
+                            <img src="assets/huit.png" alt="Logo HUIT" class="w-full h-full object-contain"
                                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'text-5xl font-bold text-white\'>HUIT</div>';">
                         </div>
                         <div class="text-center space-y-2">
                             <div class="text-2xl font-bold">2022 - 2026</div>
                             <div class="text-gray-400">(Dự kiến tốt nghiệp)</div>
-                            <div class="inline-block bg-gradient-to-r from-green-600 to-emerald-500 text-white px-4 py-2 rounded-full text-sm font-bold mt-2">
+                            <div
+                                class="inline-block bg-gradient-to-r from-green-600 to-emerald-500 text-white px-4 py-2 rounded-full text-sm font-bold mt-2">
                                 <i class="fas fa-graduation-cap mr-2"></i>Loại Giỏi
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="lg:w-3/5">
                         <h3 class="text-3xl font-bold mb-6 flex items-center gap-3">
                             <i class="fas fa-university text-blue-400"></i>
                             Trường Đại học Công Thương TP.HCM (HUIT)
                         </h3>
-                        
+
                         <div class="mb-8">
                             <div class="flex items-center gap-3 mb-4">
                                 <div class="w-10 h-10 rounded-lg bg-blue-900/50 flex items-center justify-center">
@@ -782,10 +897,12 @@
                                 <h4 class="text-xl font-bold">Chuyên ngành: Kỹ thuật phần mềm</h4>
                             </div>
                             <p class="text-gray-300 mb-6">
-                                Chương trình đào tạo chuyên sâu về phát triển phần mềm, kiến trúc hệ thống, quy trình phát triển và các công nghệ hiện đại. Trang bị nền tảng vững chắc để giải quyết các bài toán thực tế.
+                                Chương trình đào tạo chuyên sâu về phát triển phần mềm, kiến trúc hệ thống, quy trình
+                                phát triển và các công nghệ hiện đại. Trang bị nền tảng vững chắc để giải quyết các bài
+                                toán thực tế.
                             </p>
                         </div>
-                        
+
                         <div class="mb-10">
                             <div class="flex justify-between items-center mb-4">
                                 <h4 class="text-xl font-bold flex items-center gap-2">
@@ -794,16 +911,17 @@
                                 </h4>
                                 <div class="text-2xl font-bold text-green-400">3.35/4.0</div>
                             </div>
-                           
+
                         </div>
-                        
+
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="bg-gray-800/50 p-5 rounded-xl">
                                 <h5 class="font-bold mb-2 flex items-center gap-2">
                                     <i class="fas fa-book text-blue-400"></i>
                                     Kiến thức nền tảng
                                 </h5>
-                                <p class="text-sm text-gray-400">Phát triển phần mềm, Cơ sở dữ liệu, Nguyên lý kỹ thuật</p>
+                                <p class="text-sm text-gray-400">Phát triển phần mềm, Cơ sở dữ liệu, Nguyên lý kỹ thuật
+                                </p>
                             </div>
                             <div class="bg-gray-800/50 p-5 rounded-xl">
                                 <h5 class="font-bold mb-2 flex items-center gap-2">
@@ -827,21 +945,26 @@
                     <div class="text-2xl font-bold neon-text mb-3">Nguyễn Tất Ngọc</div>
                     <div class="text-gray-400 mb-4">Full-stack Developer</div>
                     <div class="flex space-x-6">
-                        <a href="mailto:nguyentatngoc110022@gmail.com" class="text-xl hover:text-blue-400 transition-all duration-300 hover:scale-110" title="Email">
+                        <a href="mailto:nguyentatngoc110022@gmail.com"
+                            class="text-xl hover:text-blue-400 transition-all duration-300 hover:scale-110"
+                            title="Email">
                             <i class="fas fa-envelope"></i>
                         </a>
-                        <a href="https://github.com/Ngoc2204" target="_blank" class="text-xl hover:text-blue-400 transition-all duration-300 hover:scale-110" title="GitHub">
+                        <a href="https://github.com/Ngoc2204" target="_blank"
+                            class="text-xl hover:text-blue-400 transition-all duration-300 hover:scale-110"
+                            title="GitHub">
                             <i class="fab fa-github"></i>
                         </a>
                     </div>
                 </div>
-                
+
                 <div class="text-center md:text-right">
                     <div class="text-gray-500 text-sm mb-2">
                         &copy; 2026 Nguyễn Tất Ngọc. All rights reserved.
                     </div>
                     <div class="text-gray-600 text-sm">
-                        Designed with <i class="fas fa-heart text-red-400"></i> and <i class="fas fa-code text-blue-400"></i>
+                        Designed with <i class="fas fa-heart text-red-400"></i> and <i
+                            class="fas fa-code text-blue-400"></i>
                     </div>
                 </div>
             </div>
@@ -853,14 +976,14 @@
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        
+
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
-            mobileMenuBtn.innerHTML = mobileMenu.classList.contains('hidden') 
-                ? '<i class="fas fa-bars"></i>' 
+            mobileMenuBtn.innerHTML = mobileMenu.classList.contains('hidden')
+                ? '<i class="fas fa-bars"></i>'
                 : '<i class="fas fa-times"></i>';
         });
-        
+
         // Close mobile menu when clicking a link
         const mobileLinks = mobileMenu.querySelectorAll('a');
         mobileLinks.forEach(link => {
@@ -869,15 +992,15 @@
                 mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
             });
         });
-        
+
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                
+
                 const targetId = this.getAttribute('href');
                 if (targetId === '#') return;
-                
+
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     window.scrollTo({
@@ -887,13 +1010,13 @@
                 }
             });
         });
-        
+
         // Add fade-in-up animation to elements when scrolling
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -100px 0px'
         };
-        
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -901,12 +1024,12 @@
                 }
             });
         }, observerOptions);
-        
+
         // Observe all sections and elements with fade-in-up class
         document.querySelectorAll('section, .fade-in-up').forEach(element => {
             observer.observe(element);
         });
-        
+
         // Animate skill bars when they come into view
         const skillBarsObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -923,23 +1046,23 @@
                 }
             });
         }, { threshold: 0.3 });
-        
+
         // Observe skills section
         const skillsSection = document.getElementById('skills');
         if (skillsSection) {
             skillBarsObserver.observe(skillsSection);
         }
-        
+
         // Active menu item on scroll
         function updateActiveMenu() {
             const sections = document.querySelectorAll('section[id]');
             const scrollPos = window.scrollY + 120; // Offset for header
-            
+
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.clientHeight;
                 const sectionId = section.getAttribute('id');
-                
+
                 if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
                     // Update desktop menu
                     document.querySelectorAll('.nav-link').forEach(link => {
@@ -948,7 +1071,7 @@
                             link.classList.add('active');
                         }
                     });
-                    
+
                     // Update mobile menu
                     document.querySelectorAll('.mobile-nav-link').forEach(link => {
                         link.classList.remove('active');
@@ -958,7 +1081,7 @@
                     });
                 }
             });
-            
+
             // Check if at top of page
             if (scrollPos < 100) {
                 document.querySelectorAll('.nav-link[href="#home"]').forEach(link => {
@@ -969,24 +1092,24 @@
                 });
             }
         }
-        
+
         // Update active menu on scroll
         window.addEventListener('scroll', updateActiveMenu);
         window.addEventListener('load', updateActiveMenu);
-        
+
         // Update active menu when clicking on menu items
         document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
-            link.addEventListener('click', function() {
+            link.addEventListener('click', function () {
                 // Remove active class from all links
                 document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(l => {
                     l.classList.remove('active');
                 });
-                
+
                 // Add active class to clicked link
                 this.classList.add('active');
             });
         });
-        
+
         // Add initial animation to elements
         window.addEventListener('load', () => {
             document.querySelectorAll('.fade-in-up').forEach(el => {
@@ -996,4 +1119,5 @@
         });
     </script>
 </body>
+
 </html>
