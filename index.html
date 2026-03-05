@@ -6,579 +6,1874 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nguyễn Tất Ngọc | Full-stack Developer</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+
     <style>
+        :root {
+            --bg-primary: #060810;
+            --bg-secondary: #0c1120;
+            --bg-card: rgba(15, 22, 40, 0.8);
+            --accent-1: #4f8eff;
+            --accent-2: #8b5cf6;
+            --accent-3: #06ffa5;
+            --accent-glow: rgba(79, 142, 255, 0.4);
+            --text-primary: #e8edf8;
+            --text-secondary: #8892a4;
+            --text-muted: #4a5568;
+            --border: rgba(255, 255, 255, 0.06);
+            --border-accent: rgba(79, 142, 255, 0.3);
+        }
+
         * {
-            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        body {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: #f1f5f9;
-            overflow-x: hidden;
-        }
-
-        .glass-card {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
-        }
-
-        .neon-text {
-            color: #60a5fa;
-            text-shadow: 0 0 10px rgba(96, 165, 250, 0.7);
-        }
-
-        .skill-tag {
-            transition: all 0.3s ease;
-        }
-
-        .skill-tag:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(96, 165, 250, 0.3);
-        }
-
-        .project-card {
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .project-card:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
-        }
-
-        .bento-grid {
-            display: grid;
-            gap: 1.5rem;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        }
-
-        .hero-image {
-            border-radius: 50%;
-            border: 3px solid rgba(96, 165, 250, 0.4);
-            box-shadow: 0 0 30px rgba(96, 165, 250, 0.3);
-        }
-
-        .section-divider {
-            height: 3px;
-            background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.7), transparent);
-        }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #1e293b;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, #60a5fa, #3b82f6);
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(to bottom, #3b82f6, #2563eb);
-        }
-
-        /* Smooth scrolling */
         html {
             scroll-behavior: smooth;
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* ======= CUSTOM CURSOR ======= */
+        .cursor-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-1);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease;
+            mix-blend-mode: screen;
+        }
+
+        .cursor-ring {
+            position: fixed;
+            width: 36px;
+            height: 36px;
+            border: 1.5px solid var(--accent-1);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: all 0.15s ease;
+            opacity: 0.6;
+        }
+
+        .cursor-ring.hovered {
+            width: 56px;
+            height: 56px;
+            border-color: var(--accent-3);
+            opacity: 1;
+            background: rgba(6, 255, 165, 0.05);
+        }
+
+        /* ======= NOISE OVERLAY ======= */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.5;
+        }
+
+        /* ======= ANIMATED BG GRID ======= */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background-image:
+                linear-gradient(rgba(79, 142, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(79, 142, 255, 0.03) 1px, transparent 1px);
+            background-size: 80px 80px;
+            animation: gridDrift 30s linear infinite;
+        }
+
+        @keyframes gridDrift {
+            0% {
+                background-position: 0 0;
             }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            100% {
+                background-position: 80px 80px;
             }
         }
 
-        @keyframes float {
+        /* ======= ORBS ======= */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            pointer-events: none;
+            z-index: 0;
+            animation: orbFloat 12s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(79, 142, 255, 0.12), transparent);
+            top: -100px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.10), transparent);
+            bottom: 10%;
+            right: -50px;
+            animation-delay: -5s;
+        }
+
+        .orb-3 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(6, 255, 165, 0.07), transparent);
+            top: 50%;
+            left: 40%;
+            animation-delay: -9s;
+        }
+
+        @keyframes orbFloat {
 
             0%,
             100% {
-                transform: translateY(0);
+                transform: translate(0, 0) scale(1);
             }
 
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 1;
+            33% {
+                transform: translate(30px, -40px) scale(1.05);
             }
 
-            50% {
-                opacity: 0.7;
+            66% {
+                transform: translate(-20px, 20px) scale(0.95);
             }
         }
 
-        .fade-in-up {
-            animation: fadeInUp 0.8s ease-out forwards;
+        /* ======= SCROLLBAR ======= */
+        ::-webkit-scrollbar {
+            width: 3px;
         }
 
-        .float {
-            animation: float 6s ease-in-out infinite;
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
         }
 
-        .pulse {
-            animation: pulse 2s ease-in-out infinite;
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--accent-1), var(--accent-2));
+            border-radius: 3px;
         }
 
-        /* Active menu item */
+        /* ======= HEADER ======= */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 20px 0;
+            transition: all 0.4s ease;
+        }
+
+        header.scrolled {
+            background: rgba(6, 8, 16, 0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 0;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
         .nav-link {
-            position: relative;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
             padding: 8px 16px;
+            border-radius: 6px;
             transition: all 0.3s ease;
-            border-radius: 8px;
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 1px;
+            background: var(--accent-1);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-link:hover::before,
+        .nav-link.active::before {
+            width: calc(100% - 32px);
         }
 
         .nav-link.active {
-            color: #60a5fa;
-            background: rgba(96, 165, 250, 0.1);
+            color: var(--text-primary);
         }
 
-        .nav-link.active::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 16px;
-            right: 16px;
-            height: 3px;
-            background: linear-gradient(90deg, #60a5fa, #3b82f6);
-            border-radius: 3px;
-            box-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
-        }
-
-        .nav-link:hover::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 16px;
-            right: 16px;
-            height: 2px;
-            background: linear-gradient(90deg, #60a5fa, #3b82f6);
-            border-radius: 2px;
-            opacity: 0.7;
-        }
-
-        /* Mobile menu active item */
-        .mobile-nav-link.active {
-            color: #60a5fa;
-            background: rgba(96, 165, 250, 0.15);
-            border-radius: 8px;
-            padding-left: 16px;
-            border-left: 4px solid #60a5fa;
-        }
-
-        /* Skill progress bars */
-        .skill-bar {
-            height: 10px;
-            border-radius: 5px;
+        .btn-cv {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            background: transparent;
+            border: 1px solid var(--border-accent);
+            color: var(--accent-1);
+            padding: 9px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-left: 12px;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            position: relative;
             overflow: hidden;
         }
 
-        .skill-progress {
-            height: 100%;
-            border-radius: 5px;
-            transition: width 1.5s ease-in-out;
+        .btn-cv::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--accent-1);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
         }
 
-        /* Project card overlay */
-        .project-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+        .btn-cv:hover {
+            color: var(--bg-primary);
+            border-color: var(--accent-1);
+        }
+
+        .btn-cv:hover::before {
+            transform: translateY(0);
+        }
+
+        .btn-cv span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* MOBILE MENU */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: none;
+            padding: 8px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 1.5px;
+            background: var(--text-primary);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.open span:nth-child(2) {
             opacity: 0;
-            transition: opacity 0.5s ease;
+        }
+
+        .hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(6, 8, 16, 0.97);
+            backdrop-filter: blur(20px);
+            z-index: 99;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 28px;
+        }
+
+        .mobile-menu.open {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--accent-1);
+            letter-spacing: 2px;
+        }
+
+        /* ======= SECTIONS ======= */
+        section {
+            position: relative;
+            z-index: 2;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: var(--accent-3);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent-3), transparent);
+            max-width: 60px;
+        }
+
+        .section-title {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.05;
+        }
+
+        /* ======= HERO ======= */
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+        }
+
+        .hero-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(79, 142, 255, 0.08);
+            border: 1px solid rgba(79, 142, 255, 0.2);
+            border-radius: 100px;
+            padding: 6px 16px 6px 8px;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--accent-1);
+            margin-bottom: 28px;
+        }
+
+        .badge-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-3);
+            border-radius: 50%;
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+                box-shadow: 0 0 6px var(--accent-3);
+            }
+
+            50% {
+                opacity: 0.4;
+                box-shadow: none;
+            }
+        }
+
+        .hero-name {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-size: clamp(48px, 6vw, 80px);
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .hero-name .highlight {
+            background: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-3) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .hero-role {
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            color: var(--text-secondary);
+            letter-spacing: 2px;
+            margin-bottom: 32px;
+        }
+
+        .hero-quote {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+            border-left: 2px solid var(--accent-1);
+            padding-left: 20px;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .hero-contacts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .contact-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .contact-pill:hover {
+            border-color: var(--accent-1);
+            color: var(--text-primary);
+            background: rgba(79, 142, 255, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .contact-pill i {
+            color: var(--accent-1);
+            font-size: 14px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            color: white;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--accent-2), var(--accent-1));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(79, 142, 255, 0.3);
+        }
+
+        .btn-primary:hover::before {
+            opacity: 1;
+        }
+
+        .btn-primary span,
+        .btn-primary i {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--accent-1);
+            color: var(--accent-1);
+            transform: translateY(-3px);
+        }
+
+        /* HERO IMAGE */
+        .hero-image-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .image-frame {
+            position: relative;
+            width: 340px;
+            height: 400px;
+        }
+
+        .image-frame::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3));
+            z-index: 0;
+            animation: borderRotate 4s linear infinite;
+        }
+
+        @keyframes borderRotate {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        .image-frame img {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 22px;
+        }
+
+        .image-frame .img-placeholder {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            border-radius: 22px;
+            background: linear-gradient(135deg, var(--bg-secondary), #1a1f35);
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .project-card:hover .project-overlay {
-            opacity: 1;
+        .image-float-1 {
+            position: absolute;
+            top: -20px;
+            right: -30px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px 16px;
+            backdrop-filter: blur(12px);
+            z-index: 10;
+            animation: floatCard 6s ease-in-out infinite;
         }
 
-        /* Education card enhancements */
-        .education-card {
+        .image-float-2 {
+            position: absolute;
+            bottom: -20px;
+            left: -30px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px 16px;
+            backdrop-filter: blur(12px);
+            z-index: 10;
+            animation: floatCard 6s ease-in-out infinite;
+            animation-delay: -3s;
+        }
+
+        @keyframes floatCard {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .float-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .float-value {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .float-value span {
+            color: var(--accent-3);
+        }
+
+        .float-icon {
+            font-size: 22px;
+            color: var(--accent-1);
+            margin-bottom: 4px;
+        }
+
+        /* ======= ABOUT ======= */
+        #about {
+            padding: 120px 0;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            align-items: center;
+            margin-top: 60px;
+        }
+
+        .about-visual {
+            position: relative;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 24px;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .education-card::before {
+        .stat-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #60a5fa, #3b82f6);
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
         }
 
-        /* Floating elements */
-        .floating-element {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(40px);
-            opacity: 0.3;
-            z-index: -1;
+        .stat-card:hover::before {
+            transform: scaleX(1);
         }
 
-        /* Experience section bullets */
-        .experience-bullet {
+        .stat-card:hover {
+            border-color: var(--border-accent);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-number {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-size: 44px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .about-text p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .about-text strong {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .about-text .accent {
+            color: var(--accent-1);
+            font-weight: 500;
+        }
+
+        /* ======= EXPERIENCE ======= */
+        #experience {
+            padding: 120px 0;
+        }
+
+        .exp-container {
+            margin-top: 60px;
+        }
+
+        .exp-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 48px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 60px;
+            transition: all 0.4s ease;
             position: relative;
-            padding-left: 1.5rem;
+            overflow: hidden;
         }
 
-        .experience-bullet::before {
-            content: '▸';
+        .exp-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(79, 142, 255, 0.03), transparent);
+            pointer-events: none;
+        }
+
+        .exp-card:hover {
+            border-color: var(--border-accent);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .exp-meta {
+            border-right: 1px solid var(--border);
+            padding-right: 60px;
+        }
+
+        .exp-role {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .exp-position {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--accent-1);
+            letter-spacing: 1px;
+            margin-bottom: 32px;
+        }
+
+        .exp-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .exp-meta-item i {
+            color: var(--accent-1);
+            width: 16px;
+        }
+
+        .exp-title {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 28px;
+        }
+
+        .exp-tasks {
+            list-style: none;
+            margin-bottom: 36px;
+        }
+
+        .exp-tasks li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 14px;
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .exp-tasks li::before {
+            content: '→';
             position: absolute;
             left: 0;
-            color: #60a5fa;
-            font-weight: bold;
+            color: var(--accent-3);
+            font-size: 12px;
+            top: 2px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech-badge {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            background: rgba(79, 142, 255, 0.08);
+            border: 1px solid rgba(79, 142, 255, 0.15);
+            color: var(--accent-1);
+            padding: 6px 14px;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+        }
+
+        .tech-badge:hover {
+            background: rgba(79, 142, 255, 0.15);
+            border-color: var(--accent-1);
+            transform: translateY(-2px);
+        }
+
+        /* ======= SKILLS ======= */
+        #skills {
+            padding: 120px 0;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 60px;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 36px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .skill-card.blue::before {
+            background: linear-gradient(90deg, transparent, var(--accent-1), transparent);
+        }
+
+        .skill-card.purple::before {
+            background: linear-gradient(90deg, transparent, var(--accent-2), transparent);
+        }
+
+        .skill-card.green::before {
+            background: linear-gradient(90deg, transparent, var(--accent-3), transparent);
+        }
+
+        .skill-card.amber::before {
+            background: linear-gradient(90deg, transparent, #fbbf24, transparent);
+        }
+
+        .skill-card:hover::before {
+            opacity: 1;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .skill-card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .skill-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .blue .skill-icon {
+            background: rgba(79, 142, 255, 0.12);
+            color: var(--accent-1);
+        }
+
+        .purple .skill-icon {
+            background: rgba(139, 92, 246, 0.12);
+            color: var(--accent-2);
+        }
+
+        .green .skill-icon {
+            background: rgba(6, 255, 165, 0.12);
+            color: var(--accent-3);
+        }
+
+        .amber .skill-icon {
+            background: rgba(251, 191, 36, 0.12);
+            color: #fbbf24;
+        }
+
+        .skill-card-title {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .skill-card-sub {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            font-size: 13px;
+            padding: 7px 14px;
+            border-radius: 8px;
+            border: 1px solid;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-weight: 400;
+        }
+
+        .blue .tag {
+            background: rgba(79, 142, 255, 0.06);
+            border-color: rgba(79, 142, 255, 0.2);
+            color: #93b4ff;
+        }
+
+        .purple .tag {
+            background: rgba(139, 92, 246, 0.06);
+            border-color: rgba(139, 92, 246, 0.2);
+            color: #c4b5fd;
+        }
+
+        .green .tag {
+            background: rgba(6, 255, 165, 0.06);
+            border-color: rgba(6, 255, 165, 0.2);
+            color: #6bffca;
+        }
+
+        .amber .tag {
+            background: rgba(251, 191, 36, 0.06);
+            border-color: rgba(251, 191, 36, 0.2);
+            color: #fcd34d;
+        }
+
+        .tag:hover {
+            transform: translateY(-3px);
+        }
+
+        .blue .tag:hover {
+            background: rgba(79, 142, 255, 0.15);
+        }
+
+        .purple .tag:hover {
+            background: rgba(139, 92, 246, 0.15);
+        }
+
+        .green .tag:hover {
+            background: rgba(6, 255, 165, 0.15);
+        }
+
+        .amber .tag:hover {
+            background: rgba(251, 191, 36, 0.15);
+        }
+
+        /* ======= PROJECTS ======= */
+        #projects {
+            padding: 120px 0;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 60px;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--border-accent);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
+        }
+
+        .project-thumb {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-thumb .thumb-text {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-size: 64px;
+            font-weight: 800;
+            opacity: 0.06;
+            transition: opacity 0.4s;
+        }
+
+        .project-card:hover .thumb-text {
+            opacity: 0.12;
+        }
+
+        .project-thumb-1 {
+            background: linear-gradient(135deg, #0f2460, #1a3a8a);
+        }
+
+        .project-thumb-2 {
+            background: linear-gradient(135deg, #2d1060, #5b21b6);
+        }
+
+        .project-thumb-3 {
+            background: linear-gradient(135deg, #064e4e, #0e7490);
+        }
+
+        .project-label {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            font-family: 'Space Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 100px;
+            font-weight: 700;
+        }
+
+        .project-thumb-1 .project-label {
+            background: rgba(79, 142, 255, 0.2);
+            color: #93b4ff;
+            border: 1px solid rgba(79, 142, 255, 0.3);
+        }
+
+        .project-thumb-2 .project-label {
+            background: rgba(139, 92, 246, 0.2);
+            color: #c4b5fd;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .project-thumb-3 .project-label {
+            background: rgba(6, 255, 165, 0.2);
+            color: #6bffca;
+            border: 1px solid rgba(6, 255, 165, 0.3);
+        }
+
+        .project-link-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s;
+            background: rgba(6, 8, 16, 0.7);
+            backdrop-filter: blur(4px);
+        }
+
+        .project-card:hover .project-link-overlay {
+            opacity: 1;
+        }
+
+        .project-link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            transform: translateY(10px);
+            transition: transform 0.4s ease;
+        }
+
+        .project-card:hover .project-link-btn {
+            transform: translateY(0);
+        }
+
+        .project-body {
+            padding: 28px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-title {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .project-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            flex: 1;
+            font-weight: 300;
+        }
+
+        .project-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .pill {
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        .project-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .project-year {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .project-type {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        .project-thumb-1 .project-type,
+        .p-type-1 {
+            background: rgba(79, 142, 255, 0.08);
+            color: var(--accent-1);
+            border: 1px solid rgba(79, 142, 255, 0.15);
+        }
+
+        /* ======= EDUCATION ======= */
+        #education {
+            padding: 120px 0 160px;
+        }
+
+        .edu-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 60px;
+            margin-top: 60px;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 60px;
+            align-items: start;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.4s;
+        }
+
+        .edu-card:hover {
+            border-color: var(--border-accent);
+        }
+
+        .edu-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-1), var(--accent-2), var(--accent-3));
+        }
+
+        .edu-logo-area {
+            text-align: center;
+        }
+
+        .edu-logo-ring {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid var(--border-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            background: rgba(79, 142, 255, 0.05);
+        }
+
+        .edu-logo-ring img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+
+        .edu-year {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .edu-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(6, 255, 165, 0.1);
+            border: 1px solid rgba(6, 255, 165, 0.25);
+            color: var(--accent-3);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 12px;
+        }
+
+        .edu-school {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .edu-major {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: var(--accent-1);
+            letter-spacing: 1px;
+            margin-bottom: 28px;
+        }
+
+        .edu-desc {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 32px;
+            font-weight: 300;
+        }
+
+        .edu-highlights {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .edu-highlight {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .edu-highlight:hover {
+            border-color: var(--border-accent);
+            background: rgba(79, 142, 255, 0.03);
+        }
+
+        .edu-highlight i {
+            color: var(--accent-1);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .edu-highlight-title {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .edu-highlight p {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* ======= FOOTER ======= */
+        footer {
+            position: relative;
+            z-index: 2;
+            border-top: 1px solid var(--border);
+            padding: 48px 0;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .footer-link {
+            font-size: 20px;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-1);
+            transform: translateY(-3px);
+        }
+
+        .footer-copy {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* ======= ANIMATIONS ======= */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .reveal-delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        .reveal-delay-3 {
+            transition-delay: 0.3s;
+        }
+
+        .reveal-delay-4 {
+            transition-delay: 0.4s;
+        }
+
+        /* GLITCH TEXT */
+        .glitch {
+            position: relative;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-3) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glitch::before {
+            animation: glitch1 4s infinite;
+            clip-path: polygon(0 30%, 100% 30%, 100% 50%, 0 50%);
+            transform: translate(-2px, 0);
+            opacity: 0;
+        }
+
+        .glitch::after {
+            animation: glitch2 4s infinite;
+            clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
+            transform: translate(2px, 0);
+            opacity: 0;
+        }
+
+        @keyframes glitch1 {
+
+            0%,
+            90%,
+            100% {
+                opacity: 0;
+            }
+
+            92% {
+                opacity: 1;
+                transform: translate(-3px, 0);
+            }
+
+            94% {
+                opacity: 0;
+            }
+
+            96% {
+                opacity: 1;
+                transform: translate(2px, 0);
+            }
+
+            98% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes glitch2 {
+
+            0%,
+            90%,
+            100% {
+                opacity: 0;
+            }
+
+            93% {
+                opacity: 1;
+                transform: translate(3px, 0);
+            }
+
+            95% {
+                opacity: 0;
+            }
+
+            97% {
+                opacity: 1;
+                transform: translate(-2px, 0);
+            }
+
+            99% {
+                opacity: 0;
+            }
+        }
+
+        /* ======= RESPONSIVE ======= */
+        @media (max-width: 900px) {
+            .container {
+                padding: 0 24px;
+            }
+
+            .header-inner {
+                padding: 0 24px;
+            }
+
+            nav.desktop {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero-layout {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .hero-image-wrapper {
+                order: -1;
+            }
+
+            .image-frame {
+                width: 260px;
+                height: 300px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .exp-card {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .exp-meta {
+                border-right: none;
+                padding-right: 0;
+                border-bottom: 1px solid var(--border);
+                padding-bottom: 36px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .edu-card {
+                grid-template-columns: 1fr;
+                gap: 36px;
+                padding: 36px;
+            }
+
+            .edu-highlights {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                gap: 24px;
+                text-align: center;
+            }
+
+            .footer-links {
+                justify-content: center;
+            }
         }
     </style>
 </head>
 
-<body class="min-h-screen">
-    <!-- Floating background elements -->
-    <div class="floating-element w-64 h-64 bg-blue-500 top-20 left-10 float"></div>
-    <div class="floating-element w-96 h-96 bg-purple-500 bottom-40 right-10 float" style="animation-delay: 2s;"></div>
-    <div class="floating-element w-80 h-80 bg-cyan-500 top-1/2 left-1/3 float" style="animation-delay: 4s;"></div>
+<body>
 
-    <!-- Header & Navigation -->
-    <header class="sticky top-0 z-50 glass-card py-3">
-        <div class="container mx-auto px-6">
-            <div class="flex justify-between items-center">
-                <div class="text-xl font-bold neon-text pulse">Nguyễn Tất Ngọc</div>
+    <!-- Custom cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
 
-                <!-- Mobile menu button -->
-                <button id="mobile-menu-btn"
-                    class="md:hidden text-2xl p-2 rounded-lg hover:bg-gray-800 transition-colors duration-300">
-                    <i class="fas fa-bars"></i>
-                </button>
+    <!-- Background -->
+    <div class="bg-grid"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
 
-                <!-- Desktop menu -->
-                <nav class="hidden md:flex items-center space-x-2">
-                    <a href="#home" class="nav-link hover:text-blue-400 transition-all duration-300 active">Home</a>
-                    <a href="#about" class="nav-link hover:text-blue-400 transition-all duration-300">About</a>
-                    <a href="#experience"
-                        class="nav-link hover:text-blue-400 transition-all duration-300">Experience</a>
-                    <a href="#skills" class="nav-link hover:text-blue-400 transition-all duration-300">Skills</a>
-                    <a href="#projects" class="nav-link hover:text-blue-400 transition-all duration-300">Projects</a>
-                    <a href="#education" class="nav-link hover:text-blue-400 transition-all duration-300">Education</a>
-                    <a href="assets/cv.pdf" target="_blank"
-                        class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-5 py-2.5 rounded-lg transition-all duration-300 ml-4 inline-flex items-center shadow-lg hover:shadow-xl">
-                        <i class="fas fa-file-pdf mr-2"></i>Xem CV
-                    </a>
-                </nav>
-            </div>
-
-            <!-- Mobile menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-2 space-y-2">
-                <a href="#home"
-                    class="mobile-nav-link block hover:text-blue-400 transition-colors duration-300 py-3 px-4 active">Home</a>
-                <a href="#about"
-                    class="mobile-nav-link block hover:text-blue-400 transition-colors duration-300 py-3 px-4">About</a>
-                <a href="#experience"
-                    class="mobile-nav-link block hover:text-blue-400 transition-colors duration-300 py-3 px-4">Experience</a>
-                <a href="#skills"
-                    class="mobile-nav-link block hover:text-blue-400 transition-colors duration-300 py-3 px-4">Skills</a>
-                <a href="#projects"
-                    class="mobile-nav-link block hover:text-blue-400 transition-colors duration-300 py-3 px-4">Projects</a>
-                <a href="#education"
-                    class="mobile-nav-link block hover:text-blue-400 transition-colors duration-300 py-3 px-4">Education</a>
-                <a href="assets/cv.pdf" target="_blank"
-                    class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-4 py-3 rounded-lg transition-all duration-300 w-full mt-4 inline-flex items-center justify-center shadow-lg">
-                    <i class="fas fa-file-pdf mr-2"></i>Xem CV
-                </a>
-            </div>
+    <!-- Header -->
+    <header id="header">
+        <div class="header-inner">
+            <a href="#home" class="logo">Nguyễn Tất Ngọc</a>
+            <nav class="desktop" style="display:flex;align-items:center;gap:8px;">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="assets/cv.pdf" target="_blank" class="btn-cv"><span><i class="fas fa-file-pdf"
+                            style="margin-right:7px;"></i>CV</span></a>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="py-16 md:py-28 relative">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-16">
-                <div class="md:w-1/2 fade-in-up">
-                    <div class="text-4xl md:text-6xl font-bold mb-4">
-                        Hi, I'm <span class="neon-text">Ngọc</span>
-                    </div>
-                    <div class="text-xl md:text-2xl mb-6 text-gray-300">
-                        Full-stack Developer
-                    </div>
-                    <div
-                        class="text-lg mb-10 text-gray-400 max-w-xl bg-gradient-to-r from-gray-800 to-gray-900 p-6 rounded-2xl border border-gray-700">
-                        <i class="fas fa-quote-left text-blue-400 mr-2"></i>
-                        "Hiện thực hóa ý tưởng bằng tư duy hệ thống và những dòng code sạch."
-                        <i class="fas fa-quote-right text-blue-400 ml-2"></i>
-                    </div>
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#home" onclick="closeMobile()">Home</a>
+        <a href="#about" onclick="closeMobile()">About</a>
+        <a href="#experience" onclick="closeMobile()">Experience</a>
+        <a href="#skills" onclick="closeMobile()">Skills</a>
+        <a href="#projects" onclick="closeMobile()">Projects</a>
+        <a href="#education" onclick="closeMobile()">Education</a>
+        <a href="assets/cv.pdf" target="_blank" onclick="closeMobile()" style="color:var(--accent-1);">Download CV</a>
+    </div>
 
-                    <div class="flex flex-wrap gap-4 mb-8">
-                        <div class="flex items-center gap-3 bg-gray-800/50 px-4 py-3 rounded-xl">
-                            <i class="fas fa-envelope text-blue-400 text-xl"></i>
-                            <span>nguyentatngoc110022@gmail.com</span>
+    <!-- ===== HERO ===== -->
+    <section id="home">
+        <div class="container">
+            <div class="hero-layout">
+                <div>
+                    <div class="hero-badge reveal">
+                        <div class="badge-dot"></div>
+                        Sẵn sàng cho cơ hội mới
+                    </div>
+                    <h1 class="hero-name reveal reveal-delay-1">
+                        Hi, I'm<br>
+                        <span class="highlight glitch" data-text="Ngọc">Ngọc</span>
+                    </h1>
+                    <p class="hero-role reveal reveal-delay-2">// Full-stack Developer</p>
+                    <blockquote class="hero-quote reveal reveal-delay-2">
+                        "Hiện thực hóa ý tưởng bằng tư duy hệ thống và những dòng code sạch."
+                    </blockquote>
+                    <div class="hero-contacts reveal reveal-delay-3">
+                        <a href="mailto:nguyentatngoc110022@gmail.com" class="contact-pill">
+                            <i class="fas fa-envelope"></i> nguyentatngoc110022@gmail.com
+                        </a>
+                        <a href="tel:0382583723" class="contact-pill">
+                            <i class="fas fa-phone"></i> 0382 583 723
+                        </a>
+                        <div class="contact-pill">
+                            <i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh
                         </div>
-                        <div class="flex items-center gap-3 bg-gray-800/50 px-4 py-3 rounded-xl">
-                            <i class="fas fa-phone text-blue-400 text-xl"></i>
-                            <span>0382 583 723</span>
+                        <div class="contact-pill">
+                            <i class="fas fa-birthday-cake"></i> 22/09/2004
                         </div>
-                        <div class="flex items-center gap-3 bg-gray-800/50 px-4 py-3 rounded-xl">
-                            <i class="fas fa-map-marker-alt text-blue-400 text-xl"></i>
+                    </div>
+                    <div class="hero-actions reveal reveal-delay-4">
+                        <a href="assets/cv.pdf" target="_blank" class="btn-primary">
+                            <i class="fas fa-file-pdf"></i><span>Xem CV</span>
+                        </a>
+                        <a href="https://github.com/Ngoc2204" target="_blank" class="btn-ghost">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+
+                        <a href="https://www.facebook.com/tat.ngoc.2004" target="_blank" class="contact-pill">
+                            <i class="fab fa-facebook"></i> Facebook
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper reveal reveal-delay-2">
+                    <div class="image-frame">
+                        <img src="assets/img.jpg" alt="Nguyễn Tất Ngọc"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="img-placeholder" style="display:none;">
+                            <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+                                <circle cx="40" cy="30" r="18" fill="rgba(79,142,255,0.3)" />
+                                <path d="M10 70C10 52 22 46 40 46C58 46 70 52 70 70" stroke="rgba(79,142,255,0.3)"
+                                    stroke-width="3" fill="none" />
+                            </svg>
+                        </div>
+                        <div class="image-float-1">
+                            <div class="float-label">GPA</div>
+                            <div class="float-value"><span>3.37</span>/4.0</div>
+                        </div>
+                        <div class="image-float-2">
+                            <div class="float-icon"><i class="fas fa-code"></i></div>
+                            <div class="float-label">Tech Stack</div>
+                            <div class="float-value" style="font-size:14px;">Laravel · Flutter</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about">
+        <div class="container">
+            <div class="section-label reveal">About Me</div>
+            <h2 class="section-title reveal reveal-delay-1">Tôi là ai?</h2>
+            <div class="about-grid">
+                <div class="about-stats">
+                    <div class="stat-card reveal reveal-delay-1">
+                        <div class="stat-number">3+</div>
+                        <div class="stat-label">Dự án thực tế hoàn thành</div>
+                    </div>
+                    <div class="stat-card reveal reveal-delay-2">
+                        <div class="stat-number">3.37</div>
+                        <div class="stat-label">GPA / 4.0 — Loại Giỏi</div>
+                    </div>
+                    <div class="stat-card reveal reveal-delay-3">
+                        <div class="stat-number">2+</div>
+                        <div class="stat-label">Năm kinh nghiệm lập trình</div>
+                    </div>
+                    <div class="stat-card reveal reveal-delay-4">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Công nghệ & framework nắm vững</div>
+                    </div>
+                </div>
+                <div class="about-text reveal reveal-delay-2">
+                    <p>
+                        Là một <strong>Full-stack Developer</strong> tốt nghiệp ngành <span class="accent">Kỹ thuật Phần
+                            mềm</span> tại HUIT với thành tích <strong>Loại Giỏi</strong>, tôi có thế mạnh phát triển
+                        các sản phẩm trọn vẹn từ Backend đến Mobile.
+                    </p>
+                    <p>
+                        Với <span class="accent">Laravel</span> trên server và <span class="accent">Flutter</span> trên
+                        di động, tôi tập trung xây dựng sản phẩm có kiến trúc sạch, hiệu năng cao và trải nghiệm người
+                        dùng mượt mà.
+                    </p>
+                    <p>
+                        Tôi có kinh nghiệm thực tế trong thiết kế CSDL, xây dựng RESTful API và phát triển giao diện
+                        responsive. Với tinh thần <strong>Growth Mindset</strong>, tôi luôn chủ động học hỏi công nghệ
+                        mới và sẵn sàng đối mặt với thử thách.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EXPERIENCE ===== -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-label reveal">Work Experience</div>
+            <h2 class="section-title reveal reveal-delay-1">Kinh nghiệm<br>làm việc</h2>
+            <div class="exp-container reveal reveal-delay-2">
+                <div class="exp-card">
+                    <div class="exp-meta">
+                        <div class="exp-role">Thực tập sinh</div>
+                        <div class="exp-position">// Mobile Developer</div>
+                        <div class="exp-meta-item">
+                            <i class="fas fa-building"></i>
+                            <span>TNHH Phần mềm Quốc Bảo</span>
+                        </div>
+                        <div class="exp-meta-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>06/2025 — 09/2025</span>
+                        </div>
+                        <div class="exp-meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>3 tháng</span>
+                        </div>
+                        <div class="exp-meta-item">
+                            <i class="fas fa-map-marker-alt"></i>
                             <span>TP. Hồ Chí Minh</span>
                         </div>
-                        <div class="flex items-center gap-3 bg-gray-800/50 px-4 py-3 rounded-xl">
-                            <i class="fas fa-map-marker-alt text-blue-400 text-xl"></i>
-                            <span>22/09/2004</span>
-                        </div>
                     </div>
-
-                    <div class="flex space-x-6">
-                        <a href="mailto:nguyentatngoc110022@gmail.com"
-                            class="text-3xl hover:text-blue-400 transition-all duration-300 hover:scale-110"
-                            title="Email">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                        <a href="https://github.com/Ngoc2204" target="_blank"
-                            class="text-3xl hover:text-blue-400 transition-all duration-300 hover:scale-110"
-                            title="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="md:w-1/2 flex justify-center fade-in-up" style="animation-delay: 0.2s;">
-                    <div class="relative">
-                        <div class="hero-image w-72 h-72 md:w-96 md:h-96 overflow-hidden relative">
-                            <img src="assets/img.jpg" alt="Nguyễn Tất Ngọc" class="w-full h-full object-cover">
-
-                        </div>
-                        <div
-                            class="absolute -top-4 -right-4 w-20 h-20 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 opacity-70 pulse">
-                        </div>
-                        <div class="absolute -bottom-4 -left-4 w-24 h-24 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 opacity-70 pulse"
-                            style="animation-delay: 1s;"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-20">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 fade-in-up">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">About Me</h2>
-                <div class="section-divider w-32 mx-auto"></div>
-                <p class="text-gray-400 mt-6 max-w-2xl mx-auto">Lập trình viên đam mê công nghệ với tư duy giải quyết
-                    vấn đề sáng tạo</p>
-            </div>
-
-            <div class="glass-card rounded-3xl p-10 max-w-5xl mx-auto fade-in-up" style="animation-delay: 0.2s;">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-blue-900/50 flex items-center justify-center">
-                                <i class="fas fa-code text-blue-400"></i>
-                            </div>
-                            Chuyên môn kỹ thuật
-                        </h3>
-                        <p class="text-lg text-gray-300 mb-6">
-                            Là một <strong class="text-blue-400">Full-stack Developer</strong> với thế mạnh về <strong
-                                class="text-blue-400">Laravel</strong> và <strong
-                                class="text-blue-400">Flutter</strong>, tôi tập trung phát triển các sản phẩm trọn vẹn
-                            từ Backend vững chắc đến trải nghiệm Mobile mượt mà.
-                        </p>
-                        <p class="text-lg text-gray-300">
-                            Với tôi, lập trình không chỉ là viết code, mà là tư duy đưa ra giải pháp tối ưu cho người
-                            dùng.
-                        </p>
-                    </div>
-
-                    <div>
-                        <h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-purple-900/50 flex items-center justify-center">
-                                <i class="fas fa-rocket text-purple-400"></i>
-                            </div>
-                            Tư duy phát triển
-                        </h3>
-                        <p class="text-lg text-gray-300 mb-6">
-                            Tôi đã có kinh nghiệm thực tế trong việc thiết kế CSDL, xây dựng RESTful API và hoàn thiện
-                            giao diện ứng dụng.
-                        </p>
-                        <p class="text-lg text-gray-300">
-                            Đặc biệt, tôi luôn giữ tinh thần cầu tiến (Growth Mindset), <strong
-                                class="text-purple-400">sẵn sàng học hỏi công nghệ mới</strong> và không ngại thử thách
-                            để nâng cao năng lực chuyên môn mỗi ngày.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="py-20">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 fade-in-up">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Kinh Nghiệm Làm Việc</h2>
-                <div class="section-divider w-32 mx-auto"></div>
-                <p class="text-gray-400 mt-6 max-w-2xl mx-auto">Trải nghiệm thực tế trong môi trường chuyên nghiệp</p>
-            </div>
-
-            <div class="glass-card rounded-3xl p-10 max-w-5xl mx-auto fade-in-up" style="animation-delay: 0.2s;">
-                <div class="flex flex-col lg:flex-row items-start gap-12">
-                    <div class="lg:w-1/3">
-                        <div class="bg-gradient-to-br from-blue-900 to-blue-700 rounded-2xl p-8 h-full">
-                            <div class="flex items-center gap-4 mb-6">
-                                <div class="w-16 h-16 rounded-xl bg-white/10 flex items-center justify-center">
-                                    <i class="fas fa-briefcase text-3xl text-blue-300"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-2xl font-bold">Thực tập sinh</h3>
-                                    <p class="text-blue-200 text-lg">Mobile Developer</p>
-                                </div>
-                            </div>
-
-                            <div class="space-y-6">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-lg bg-blue-800/50 flex items-center justify-center">
-                                        <i class="fas fa-building text-blue-300"></i>
-                                    </div>
-                                    <div>
-                                        <div class="text-sm text-blue-200">Công ty</div>
-                                        <div class="font-bold">TNHH Phần mềm Quốc Bảo</div>
-                                    </div>
-                                </div>
-
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-lg bg-blue-800/50 flex items-center justify-center">
-                                        <i class="fas fa-calendar-alt text-blue-300"></i>
-                                    </div>
-                                    <div>
-                                        <div class="text-sm text-blue-200">Thời gian</div>
-                                        <div class="font-bold">06/2025 - 09/2025</div>
-                                    </div>
-                                </div>
-
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-lg bg-blue-800/50 flex items-center justify-center">
-                                        <i class="fas fa-clock text-blue-300"></i>
-                                    </div>
-                                    <div>
-                                        <div class="text-sm text-blue-200">Thời lượng</div>
-                                        <div class="font-bold">3 tháng</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="lg:w-2/3">
-                        <h3 class="text-3xl font-bold mb-6 flex items-center gap-3">
-                            <i class="fas fa-mobile-alt text-purple-400"></i>
-                            Mobile Developer (Flutter)
-                        </h3>
-
-                        <div class="mb-8">
-                            <h4 class="text-xl font-bold mb-4 flex items-center gap-2">
-                                <i class="fas fa-tasks text-green-400"></i>
-                                Nhiệm vụ & Trách nhiệm
-                            </h4>
-                            <div class="space-y-4">
-                                <div class="flex items-start gap-3">
-                                    <div
-                                        class="w-6 h-6 rounded-full bg-green-900/50 flex items-center justify-center mt-1">
-                                        <i class="fas fa-check text-green-400 text-xs"></i>
-                                    </div>
-                                    <p class="text-gray-300">Phát triển ứng dụng mobile sử dụng Flutter framework</p>
-                                </div>
-                                <div class="flex items-start gap-3">
-                                    <div
-                                        class="w-6 h-6 rounded-full bg-green-900/50 flex items-center justify-center mt-1">
-                                        <i class="fas fa-check text-green-400 text-xs"></i>
-                                    </div>
-                                    <p class="text-gray-300">Xây dựng giao diện người dùng responsive và thân thiện</p>
-                                </div>
-                                <div class="flex items-start gap-3">
-                                    <div
-                                        class="w-6 h-6 rounded-full bg-green-900/50 flex items-center justify-center mt-1">
-                                        <i class="fas fa-check text-green-400 text-xs"></i>
-                                    </div>
-                                    <p class="text-gray-300">Kết nối và xử lý dữ liệu từ RESTful API</p>
-                                </div>
-                                <div class="flex items-start gap-3">
-                                    <div
-                                        class="w-6 h-6 rounded-full bg-green-900/50 flex items-center justify-center mt-1">
-                                        <i class="fas fa-check text-green-400 text-xs"></i>
-                                    </div>
-                                    <p class="text-gray-300">Tối ưu hiệu năng ứng dụng và xử lý lỗi</p>
-                                </div>
-                                <div class="flex items-start gap-3">
-                                    <div
-                                        class="w-6 h-6 rounded-full bg-green-900/50 flex items-center justify-center mt-1">
-                                        <i class="fas fa-check text-green-400 text-xs"></i>
-                                    </div>
-                                    <p class="text-gray-300">Tham gia vào quy trình phát triển Agile/Scrum</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mb-8">
-                            <h4 class="text-xl font-bold mb-4 flex items-center gap-2">
-                                <i class="fas fa-cogs text-amber-400"></i>
-                                Công nghệ sử dụng
-                            </h4>
-                            <div class="flex flex-wrap gap-3">
-                                <span
-                                    class="skill-tag bg-purple-900/30 text-purple-300 px-4 py-2 rounded-lg border border-purple-700/50 flex items-center gap-2">
-                                    <i class="fab fa-flutter"></i> Flutter
-                                </span>
-                                <span
-                                    class="skill-tag bg-blue-900/30 text-blue-300 px-4 py-2 rounded-lg border border-blue-700/50 flex items-center gap-2">
-                                    <i class="fas fa-code"></i> Dart
-                                </span>
-                                <span
-                                    class="skill-tag bg-gray-800 text-gray-300 px-4 py-2 rounded-lg border border-gray-700 flex items-center gap-2">
-                                    <i class="fas fa-code-branch"></i> REST API
-                                </span>
-                                <span
-                                    class="skill-tag bg-green-900/30 text-green-300 px-4 py-2 rounded-lg border border-green-700/50 flex items-center gap-2">
-                                    <i class="fab fa-git-alt"></i> Git
-                                </span>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h4 class="text-xl font-bold mb-4 flex items-center gap-2">
-                                <i class="fas fa-graduation-cap text-blue-400"></i>
-                                Kinh nghiệm thu được
-                            </h4>
-                            <p class="text-gray-300">
-                                Qua đợt thực tập tại Quốc Bảo Software, tôi đã có cơ hội áp dụng kiến thức lý thuyết vào
-                                dự án thực tế, nâng cao kỹ năng phát triển ứng dụng di động đa nền tảng với Flutter.
-                                Đồng thời, tôi học được cách làm việc trong môi trường chuyên nghiệp, tuân thủ quy trình
-                                phát triển phần mềm và hợp tác hiệu quả với team.
-                            </p>
+                    <div class="exp-detail">
+                        <h3 class="exp-title">Mobile Developer (Flutter)</h3>
+                        <ul class="exp-tasks">
+                            <li>Phát triển ứng dụng mobile cross-platform sử dụng Flutter framework</li>
+                            <li>Xây dựng giao diện người dùng responsive và thân thiện với UX tốt</li>
+                            <li>Kết nối và xử lý dữ liệu từ RESTful API, xử lý state management</li>
+                            <li>Tối ưu hiệu năng ứng dụng, xử lý lỗi và debugging</li>
+                            <li>Tham gia quy trình phát triển Agile/Scrum, làm việc theo team</li>
+                        </ul>
+                        <h4
+                            style="font-size:13px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:16px;font-family:'Space Mono',monospace;">
+                            Tech Stack</h4>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Flutter</span>
+                            <span class="tech-badge">Dart</span>
+                            <span class="tech-badge">REST API</span>
+                            <span class="tech-badge">GetX</span>
+                            <span class="tech-badge">Git</span>
+                            <span class="tech-badge">Agile/Scrum</span>
                         </div>
                     </div>
                 </div>
@@ -586,397 +1881,178 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-20">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 fade-in-up">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Kỹ Năng</h2>
-                <div class="section-divider w-32 mx-auto"></div>
-                <p class="text-gray-400 mt-6 max-w-2xl mx-auto">Sở hữu đa dạng kỹ năng từ Backend đến Frontend và Mobile
-                    Development</p>
-            </div>
-
-            <div class="bento-grid">
-                <!-- Backend Skills -->
-                <div class="glass-card rounded-2xl p-8 fade-in-up" style="animation-delay: 0.1s;">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div
-                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center shadow-lg">
-                            <i class="fas fa-server text-2xl text-blue-300"></i>
-                        </div>
+    <!-- ===== SKILLS ===== -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-label reveal">Skills & Tools</div>
+            <h2 class="section-title reveal reveal-delay-1">Kỹ năng<br>chuyên môn</h2>
+            <div class="skills-grid">
+                <div class="skill-card blue reveal reveal-delay-1">
+                    <div class="skill-card-header">
+                        <div class="skill-icon"><i class="fas fa-server"></i></div>
                         <div>
-                            <h3 class="text-2xl font-bold">Backend</h3>
-                            <p class="text-gray-400 text-sm">Server-side Development</p>
+                            <div class="skill-card-title">Backend</div>
+                            <div class="skill-card-sub">Server-side Development</div>
                         </div>
                     </div>
-                    <div class="flex flex-wrap gap-3">
-                        <span
-                            class="skill-tag bg-blue-900/30 text-blue-300 px-4 py-2.5 rounded-lg border border-blue-700/50 flex items-center gap-2">
-                            <i class="fab fa-php"></i> PHP
-                        </span>
-                        <span
-                            class="skill-tag bg-blue-900/30 text-blue-300 px-4 py-2.5 rounded-lg border border-blue-700/50 flex items-center gap-2">
-                            <i class="fab fa-java"></i> Java
-                        </span>
-                        <span
-                            class="skill-tag bg-blue-900/30 text-blue-300 px-4 py-2.5 rounded-lg border border-blue-700/50 flex items-center gap-2">
-                            <i class="fab fa-cuttlefish"></i> C/C++
-                        </span>
-                        <span
-                            class="skill-tag bg-blue-900/30 text-blue-300 px-4 py-2.5 rounded-lg border border-blue-700/50 flex items-center gap-2">
-                            <i class="fab fa-microsoft"></i> C#
-                        </span>
-                        <span
-                            class="skill-tag bg-blue-900/30 text-blue-300 px-4 py-2.5 rounded-lg border border-blue-700/50 flex items-center gap-2">
-                            <i class="fas fa-fire"></i> Laravel
-                        </span>
-                        <span
-                            class="skill-tag bg-blue-900/30 text-blue-300 px-4 py-2.5 rounded-lg border border-blue-700/50 flex items-center gap-2">
-                            <i class="fas fa-database"></i> MySQL
-                        </span>
-                        <span
-                            class="skill-tag bg-blue-900/30 text-blue-300 px-4 py-2.5 rounded-lg border border-blue-700/50 flex items-center gap-2">
-                            <i class="fas fa-server"></i> SQL Server
-                        </span>
-                        <span
-                            class="skill-tag bg-blue-900/30 text-blue-300 px-4 py-2.5 rounded-lg border border-blue-700/50 flex items-center gap-2">
-                            <i class="fas fa-code-branch"></i> RESTful API
-                        </span>
+                    <div class="tags">
+                        <span class="tag"><i class="fab fa-php"></i> PHP</span>
+                        <span class="tag"><i class="fas fa-fire"></i> Laravel</span>
+                        <span class="tag"><i class="fab fa-java"></i> Java</span>
+                        <span class="tag"><i class="fab fa-cuttlefish"></i> C/C++</span>
+                        <span class="tag"><i class="fab fa-microsoft"></i> C#</span>
+                        <span class="tag"><i class="fas fa-database"></i> MySQL</span>
+                        <span class="tag"><i class="fas fa-code-branch"></i> RESTful API</span>
                     </div>
                 </div>
-
-                <!-- Mobile Skills -->
-                <div class="glass-card rounded-2xl p-8 fade-in-up" style="animation-delay: 0.2s;">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div
-                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-900 to-purple-700 flex items-center justify-center shadow-lg">
-                            <i class="fas fa-mobile-alt text-2xl text-purple-300"></i>
-                        </div>
+                <div class="skill-card purple reveal reveal-delay-2">
+                    <div class="skill-card-header">
+                        <div class="skill-icon"><i class="fas fa-mobile-alt"></i></div>
                         <div>
-                            <h3 class="text-2xl font-bold">Mobile</h3>
-                            <p class="text-gray-400 text-sm">Cross-platform Development</p>
+                            <div class="skill-card-title">Mobile</div>
+                            <div class="skill-card-sub">Cross-platform Development</div>
                         </div>
                     </div>
-                    <div class="flex flex-wrap gap-3">
-                        <span
-                            class="skill-tag bg-purple-900/30 text-purple-300 px-4 py-2.5 rounded-lg border border-purple-700/50 flex items-center gap-2">
-                            <i class="fab fa-flutter"></i> Flutter
-                        </span>
-                        <span
-                            class="skill-tag bg-purple-900/30 text-purple-300 px-4 py-2.5 rounded-lg border border-purple-700/50 flex items-center gap-2">
-                            <i class="fas fa-code"></i> Dart
-                        </span>
-                        <span
-                            class="skill-tag bg-purple-900/30 text-purple-300 px-4 py-2.5 rounded-lg border border-purple-700/50 flex items-center gap-2">
-                            <i class="fas fa-cube"></i> GetX
-                        </span>
-                        <span
-                            class="skill-tag bg-purple-900/30 text-purple-300 px-4 py-2.5 rounded-lg border border-purple-700/50 flex items-center gap-2">
-                            <i class="fas fa-box"></i> Provider
-                        </span>
+                    <div class="tags">
+                        <span class="tag"><i class="fab fa-flutter"></i> Flutter</span>
+                        <span class="tag"><i class="fas fa-code"></i> Dart</span>
+                        <span class="tag"><i class="fas fa-cube"></i> GetX</span>
+                        <span class="tag"><i class="fas fa-box"></i> Provider</span>
                     </div>
                 </div>
-
-                <!-- Frontend & Tools -->
-                <div class="glass-card rounded-2xl p-8 fade-in-up" style="animation-delay: 0.3s;">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div
-                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-green-900 to-green-700 flex items-center justify-center shadow-lg">
-                            <i class="fas fa-code text-2xl text-green-300"></i>
-                        </div>
+                <div class="skill-card green reveal reveal-delay-3">
+                    <div class="skill-card-header">
+                        <div class="skill-icon"><i class="fas fa-code"></i></div>
                         <div>
-                            <h3 class="text-2xl font-bold">Frontend & Tools</h3>
-                            <p class="text-gray-400 text-sm">UI/UX & Development Tools</p>
+                            <div class="skill-card-title">Frontend & Tools</div>
+                            <div class="skill-card-sub">UI/UX & Dev Tools</div>
                         </div>
                     </div>
-                    <div class="grid grid-cols-2 gap-3">
-                        <span
-                            class="skill-tag bg-green-900/30 text-green-300 px-4 py-2.5 rounded-lg border border-green-700/50 flex items-center justify-center gap-2">
-                            <i class="fab fa-html5"></i> HTML5
-                        </span>
-                        <span
-                            class="skill-tag bg-green-900/30 text-green-300 px-4 py-2.5 rounded-lg border border-green-700/50 flex items-center justify-center gap-2">
-                            <i class="fab fa-css3-alt"></i> CSS3
-                        </span>
-                        <span
-                            class="skill-tag bg-green-900/30 text-green-300 px-4 py-2.5 rounded-lg border border-green-700/50 flex items-center justify-center gap-2">
-                            <i class="fab fa-bootstrap"></i> Bootstrap
-                        </span>
-                        <span
-                            class="skill-tag bg-green-900/30 text-green-300 px-4 py-2.5 rounded-lg border border-green-700/50 flex items-center justify-center gap-2">
-                            <i class="fas fa-wind"></i> Tailwind
-                        </span>
-                        <span
-                            class="skill-tag bg-green-900/30 text-green-300 px-4 py-2.5 rounded-lg border border-green-700/50 flex items-center justify-center gap-2">
-                            <i class="fab fa-git-alt"></i> Git
-                        </span>
-
+                    <div class="tags">
+                        <span class="tag"><i class="fab fa-html5"></i> HTML5</span>
+                        <span class="tag"><i class="fab fa-css3-alt"></i> CSS3</span>
+                        <span class="tag"><i class="fab fa-bootstrap"></i> Bootstrap</span>
+                        <span class="tag"><i class="fas fa-wind"></i> Tailwind</span>
+                        <span class="tag"><i class="fab fa-git-alt"></i> Git</span>
                     </div>
                 </div>
-
-                <!-- Soft Skills -->
-                <div class="glass-card rounded-2xl p-8 fade-in-up" style="animation-delay: 0.4s;">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div
-                            class="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-900 to-amber-700 flex items-center justify-center shadow-lg">
-                            <i class="fas fa-brain text-2xl text-amber-300"></i>
-                        </div>
+                <div class="skill-card amber reveal reveal-delay-4">
+                    <div class="skill-card-header">
+                        <div class="skill-icon"><i class="fas fa-brain"></i></div>
                         <div>
-                            <h3 class="text-2xl font-bold">Kỹ Năng Mềm</h3>
-                            <p class="text-gray-400 text-sm">Personal & Team Skills</p>
+                            <div class="skill-card-title">Kỹ Năng Mềm</div>
+                            <div class="skill-card-sub">Soft Skills & Mindset</div>
                         </div>
                     </div>
-                    <div class="flex flex-wrap gap-3">
-                        <span
-                            class="skill-tag bg-amber-900/30 text-amber-300 px-4 py-2.5 rounded-lg border border-amber-700/50 flex items-center gap-2">
-                            <i class="fas fa-lightbulb"></i> Tư duy logic
-                        </span>
-                        <span
-                            class="skill-tag bg-amber-900/30 text-amber-300 px-4 py-2.5 rounded-lg border border-amber-700/50 flex items-center gap-2">
-                            <i class="fas fa-puzzle-piece"></i> Giải quyết vấn đề
-                        </span>
-                        <span
-                            class="skill-tag bg-amber-900/30 text-amber-300 px-4 py-2.5 rounded-lg border border-amber-700/50 flex items-center gap-2">
-                            <i class="fas fa-users"></i> Làm việc nhóm
-                        </span>
+                    <div class="tags">
+                        <span class="tag"><i class="fas fa-lightbulb"></i> Tư duy logic</span>
+                        <span class="tag"><i class="fas fa-puzzle-piece"></i> Problem Solving</span>
+                        <span class="tag"><i class="fas fa-users"></i> Teamwork</span>
+                        <span class="tag"><i class="fas fa-rocket"></i> Growth Mindset</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-20">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 fade-in-up">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Dự Án Nổi Bật</h2>
-                <div class="section-divider w-32 mx-auto"></div>
-                <p class="text-gray-400 mt-6 max-w-2xl mx-auto">Các dự án thực tế thể hiện năng lực chuyên môn và tư duy
-                    giải quyết vấn đề</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+    <!-- ===== PROJECTS ===== -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-label reveal">Featured Projects</div>
+            <h2 class="section-title reveal reveal-delay-1">Dự án<br>nổi bật</h2>
+            <div class="projects-grid">
                 <!-- Project 1 -->
-                <div class="project-card glass-card rounded-3xl overflow-hidden relative fade-in-up"
-                    style="animation-delay: 0.1s;">
-                    <div
-                        class="h-64 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 flex items-center justify-center relative">
-                        <div class="text-6xl font-bold opacity-30">KLCN</div>
-                        <div
-                            class="absolute top-4 left-4 bg-blue-800/80 text-blue-200 px-4 py-2 rounded-full text-sm font-bold">
-                            KHÓA LUẬN CỬ NHÂN
-                        </div>
-                        <div class="project-overlay">
+                <div class="project-card reveal reveal-delay-1">
+                    <div class="project-thumb project-thumb-1">
+                        <div class="thumb-text">KLCN</div>
+                        <span class="project-label">Khóa luận CN</span>
+                        <div class="project-link-overlay">
                             <a href="https://github.com/Ngoc2204/QuanLy_DiemRenLuyen_CTXH" target="_blank"
-                                class="bg-white text-blue-600 px-6 py-3 rounded-lg font-bold hover:bg-blue-50 transition-colors duration-300">
-                                <i class="fab fa-github mr-2"></i>Xem GitHub
+                                class="project-link-btn">
+                                <i class="fab fa-github"></i> Xem GitHub
                             </a>
                         </div>
                     </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-3">Hệ thống Quản lý Điểm rèn luyện & CTXH</h3>
-                        <div class="flex flex-wrap gap-2 mb-5">
-                            <span
-                                class="bg-blue-900/40 text-blue-300 px-3 py-1.5 rounded-full text-sm font-medium">Laravel</span>
-                            <span
-                                class="bg-purple-900/40 text-purple-300 px-3 py-1.5 rounded-full text-sm font-medium">Flutter</span>
-                            <span
-                                class="bg-green-900/40 text-green-300 px-3 py-1.5 rounded-full text-sm font-medium">MySQL</span>
-                            <span class="bg-gray-800 text-gray-300 px-3 py-1.5 rounded-full text-sm font-medium">REST
-                                API</span>
-                        </div>
-                        <p class="text-gray-300 mb-6 leading-relaxed">
-                            <span class="font-bold text-blue-400">Vai trò: Full-stack Developer & Trưởng
-                                nhóm.</span><br>
-                            Số hóa toàn bộ quy trình quản lý điểm rèn luyện, thay thế phương thức thủ công. Xây dựng Web
-                            Admin và Mobile App hoàn chỉnh với giao diện thân thiện, dễ sử dụng.
+                    <div class="project-body">
+                        <h3 class="project-title">Hệ thống Quản lý Điểm rèn luyện & CTXH</h3>
+                        <p class="project-desc">
+                            <strong style="color:var(--accent-1);">Full-stack Dev & Trưởng nhóm.</strong> Số hóa quy
+                            trình quản lý điểm rèn luyện. Web Admin + Mobile App hoàn chỉnh với giao diện thân thiện.
                         </p>
-                        <div class="flex justify-between items-center pt-4 border-t border-gray-700">
-                            <div class="flex items-center gap-2 text-sm text-gray-400">
-                                <i class="fas fa-calendar-alt"></i>
-                                <span>2024 - 2025</span>
-                            </div>
-                            <span
-                                class="text-sm font-medium bg-blue-900/30 text-blue-300 px-3 py-1 rounded-full">Full-stack
-                                Project</span>
+                        <div class="project-pills">
+                            <span class="pill">Laravel</span>
+                            <span class="pill">Flutter</span>
+                            <span class="pill">MySQL</span>
+                            <span class="pill">REST API</span>
+                        </div>
+                        <div class="project-footer">
+                            <span class="project-year">2025</span>
+                            <span class="project-type p-type-1">Full-stack</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project 2 -->
-                <div class="project-card glass-card rounded-3xl overflow-hidden relative fade-in-up"
-                    style="animation-delay: 0.3s;">
-                    <div
-                        class="h-64 bg-gradient-to-br from-purple-900 via-purple-800 to-purple-700 flex items-center justify-center relative">
-                        <div class="text-6xl font-bold opacity-30">NCKH</div>
-                        <div
-                            class="absolute top-4 left-4 bg-purple-800/80 text-purple-200 px-4 py-2 rounded-full text-sm font-bold">
-                            NGHIÊN CỨU KHOA HỌC
-                        </div>
-                        <div class="project-overlay">
-                            <a href="assets/chungnhan.pdf" target="_blank"
-                                class="bg-white text-purple-600 px-6 py-3 rounded-lg font-bold hover:bg-purple-50 transition-colors duration-300">
-                                <i class="fas fa-file-pdf mr-2"></i>Xem Chứng nhận
+                <div class="project-card reveal reveal-delay-2">
+                    <div class="project-thumb project-thumb-2">
+                        <div class="thumb-text">NCKH</div>
+                        <span class="project-label">Nghiên cứu KH</span>
+                        <div class="project-link-overlay">
+                            <a href="assets/chungnhan.pdf" target="_blank" class="project-link-btn">
+                                <i class="fas fa-file-pdf"></i> Chứng nhận
                             </a>
                         </div>
                     </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-3">Hệ thống Gợi ý hoạt động ngoại khóa</h3>
-                        <div class="flex flex-wrap gap-2 mb-5">
-                            <span class="bg-blue-900/40 text-blue-300 px-3 py-1.5 rounded-full text-sm font-medium">Data
-                                Science</span>
-                            <span
-                                class="bg-green-900/40 text-green-300 px-3 py-1.5 rounded-full text-sm font-medium">Python</span>
-                            <span
-                                class="bg-amber-900/40 text-amber-300 px-3 py-1.5 rounded-full text-sm font-medium">Machine
-                                Learning</span>
-                            <span
-                                class="bg-gray-800 text-gray-300 px-3 py-1.5 rounded-full text-sm font-medium">Recommendation</span>
-                        </div>
-                        <p class="text-gray-300 mb-6 leading-relaxed">
-                            <span class="font-bold text-purple-400">Vai trò: Trưởng nhóm.</span><br>
-                            Hệ thống gợi ý cá nhân hóa dựa trên sở thích và mục tiêu kỹ năng của sinh viên. Ứng dụng
-                            thuật toán Machine Learning để phân tích và đề xuất hoạt động phù hợp. Dự án lọt vào
-                            <strong>Vòng Chung kết cấp khoa CNTT</strong>.
+                    <div class="project-body">
+                        <h3 class="project-title">Hệ thống Gợi ý hoạt động ngoại khóa</h3>
+                        <p class="project-desc">
+                            <strong style="color:var(--accent-2);">Trưởng nhóm.</strong> Gợi ý cá nhân hóa dựa trên ML.
+                            Lọt vào <strong>Chung kết cấp khoa CNTT</strong>.
                         </p>
-                        <div class="flex justify-between items-center pt-4 border-t border-gray-700">
-                            <div class="flex items-center gap-2 text-sm text-gray-400">
-                                <i class="fas fa-award"></i>
-                                <span>Chung kết cấp khoa</span>
-                            </div>
-                            <span
-                                class="text-sm font-medium bg-purple-900/30 text-purple-300 px-3 py-1 rounded-full">Data
-                                Science Project</span>
+                        <div class="project-pills">
+                            <span class="pill">Python</span>
+                            <span class="pill">Machine Learning</span>
+                            <span class="pill">Data Science</span>
+                        </div>
+                        <div class="project-footer">
+                            <span class="project-year"><i class="fas fa-award"
+                                    style="color:var(--accent-3);margin-right:5px;"></i>Chung kết cấp khoa</span>
+                            <span class="project-type"
+                                style="background:rgba(139,92,246,0.08);color:var(--accent-2);border:1px solid rgba(139,92,246,0.15);">Data
+                                Science</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project 3 -->
-                <div class="project-card glass-card rounded-3xl overflow-hidden relative fade-in-up"
-                    style="animation-delay: 0.5s;">
-                    <div
-                        class="h-64 bg-gradient-to-br from-cyan-900 via-cyan-800 to-cyan-700 flex items-center justify-center relative">
-                        <div class="text-6xl font-bold opacity-30">Booking</div>
-                        <div
-                            class="absolute top-4 left-4 bg-cyan-800/80 text-cyan-200 px-4 py-2 rounded-full text-sm font-bold">
-                            MÔN LẬP TRÌNH PHP
-                        </div>
-                        <div class="project-overlay">
+                <div class="project-card reveal reveal-delay-3">
+                    <div class="project-thumb project-thumb-3">
+                        <div class="thumb-text">Booking</div>
+                        <span class="project-label"
+                            style="background:rgba(6,255,165,0.2);color:#6bffca;border:1px solid rgba(6,255,165,0.3);">PHP
+                            Project</span>
+                        <div class="project-link-overlay">
                             <a href="https://github.com/Ngoc2204/He-thong-dat-lich-kham" target="_blank"
-                                class="bg-white text-cyan-600 px-6 py-3 rounded-lg font-bold hover:bg-cyan-50 transition-colors duration-300">
-                                <i class="fab fa-github mr-2"></i>Xem GitHub
+                                class="project-link-btn">
+                                <i class="fab fa-github"></i> Xem GitHub
                             </a>
                         </div>
                     </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-3">Hệ thống Đặt lịch khám bệnh</h3>
-                        <div class="flex flex-wrap gap-2 mb-5">
-                            <span
-                                class="bg-blue-900/40 text-blue-300 px-3 py-1.5 rounded-full text-sm font-medium">Laravel</span>
-                            <span
-                                class="bg-green-900/40 text-green-300 px-3 py-1.5 rounded-full text-sm font-medium">MySQL</span>
-                            <span
-                                class="bg-cyan-900/40 text-cyan-300 px-3 py-1.5 rounded-full text-sm font-medium">PHP</span>
-                            <span class="bg-gray-800 text-gray-300 px-3 py-1.5 rounded-full text-sm font-medium">Time
-                                Slot Management</span>
-                        </div>
-                        <p class="text-gray-300 mb-6 leading-relaxed">
-                            <span class="font-bold text-cyan-400">Vai trò: Full-stack Developer.</span><br>
-                            Website cho phép bệnh nhân tìm kiếm bác sĩ, xem lịch trống và đặt lịch hẹn trực tuyến.
-                            Hệ thống xử lý đặt lịch thông minh, đảm bảo không trùng lặp thời gian và quản lý lịch trình
-                            bác sĩ hiệu quả.
+                    <div class="project-body">
+                        <h3 class="project-title">Hệ thống Đặt lịch khám bệnh</h3>
+                        <p class="project-desc">
+                            <strong style="color:var(--accent-3);">Full-stack Dev.</strong> Bệnh nhân tìm bác sĩ, xem
+                            lịch trống, đặt lịch online. Xử lý thông minh không trùng lặp.
                         </p>
-                        <div class="flex justify-between items-center pt-4 border-t border-gray-700">
-                            <div class="flex items-center gap-2 text-sm text-gray-400">
-                                <i class="fas fa-calendar-alt"></i>
-                                <span>2024</span>
-                            </div>
-                            <span class="text-sm font-medium bg-cyan-900/30 text-cyan-300 px-3 py-1 rounded-full">PHP
-                                Project</span>
+                        <div class="project-pills">
+                            <span class="pill">Laravel</span>
+                            <span class="pill">PHP</span>
+                            <span class="pill">MySQL</span>
                         </div>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="py-20">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 fade-in-up">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Học Vấn</h2>
-                <div class="section-divider w-32 mx-auto"></div>
-                <p class="text-gray-400 mt-6 max-w-2xl mx-auto">Nền tảng học thuật vững chắc kết hợp với kinh nghiệm
-                    thực tiễn</p>
-            </div>
-
-            <div class="education-card glass-card rounded-3xl p-10 max-w-5xl mx-auto fade-in-up"
-                style="animation-delay: 0.2s;">
-                <div class="flex flex-col lg:flex-row items-center gap-12">
-                    <div class="lg:w-2/5 flex flex-col items-center">
-                        <div
-                            class="w-48 h-48 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 overflow-hidden flex items-center justify-center mb-6 p-4 border-4 border-blue-500/30">
-                            <img src="assets/huit.png" alt="Logo HUIT" class="w-full h-full object-contain"
-                                onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'text-5xl font-bold text-white\'>HUIT</div>';">
-                        </div>
-                        <div class="text-center space-y-2">
-                            <div class="text-2xl font-bold">2022 - 2026</div>
-                            <div class="text-gray-400">(Dự kiến tốt nghiệp)</div>
-                            <div
-                                class="inline-block bg-gradient-to-r from-green-600 to-emerald-500 text-white px-4 py-2 rounded-full text-sm font-bold mt-2">
-                                <i class="fas fa-graduation-cap mr-2"></i>Loại Giỏi
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="lg:w-3/5">
-                        <h3 class="text-3xl font-bold mb-6 flex items-center gap-3">
-                            <i class="fas fa-university text-blue-400"></i>
-                            Trường Đại học Công Thương TP.HCM (HUIT)
-                        </h3>
-
-                        <div class="mb-8">
-                            <div class="flex items-center gap-3 mb-4">
-                                <div class="w-10 h-10 rounded-lg bg-blue-900/50 flex items-center justify-center">
-                                    <i class="fas fa-laptop-code text-blue-400"></i>
-                                </div>
-                                <h4 class="text-xl font-bold">Chuyên ngành: Kỹ thuật phần mềm</h4>
-                            </div>
-                            <p class="text-gray-300 mb-6">
-                                Chương trình đào tạo chuyên sâu về phát triển phần mềm, kiến trúc hệ thống, quy trình
-                                phát triển và các công nghệ hiện đại. Trang bị nền tảng vững chắc để giải quyết các bài
-                                toán thực tế.
-                            </p>
-                        </div>
-
-                        <div class="mb-10">
-                            <div class="flex justify-between items-center mb-4">
-                                <h4 class="text-xl font-bold flex items-center gap-2">
-                                    <i class="fas fa-chart-line text-green-400"></i>
-                                    Thành tích học tập
-                                </h4>
-                                <div class="text-2xl font-bold text-green-400">3.37/4.0</div>
-                            </div>
-
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div class="bg-gray-800/50 p-5 rounded-xl">
-                                <h5 class="font-bold mb-2 flex items-center gap-2">
-                                    <i class="fas fa-book text-blue-400"></i>
-                                    Kiến thức nền tảng
-                                </h5>
-                                <p class="text-sm text-gray-400">Phát triển phần mềm, Cơ sở dữ liệu, Nguyên lý kỹ thuật
-                                </p>
-                            </div>
-                            <div class="bg-gray-800/50 p-5 rounded-xl">
-                                <h5 class="font-bold mb-2 flex items-center gap-2">
-                                    <i class="fas fa-project-diagram text-purple-400"></i>
-                                    Dự án thực tế
-                                </h5>
-                                <p class="text-sm text-gray-400">Tham gia nhiều dự án và cuộc thi ứng dụng kiến thức</p>
-                            </div>
+                        <div class="project-footer">
+                            <span class="project-year">2025</span>
+                            <span class="project-type"
+                                style="background:rgba(6,255,165,0.08);color:var(--accent-3);border:1px solid rgba(6,255,165,0.15);">PHP</span>
                         </div>
                     </div>
                 </div>
@@ -984,184 +2060,150 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-10 border-t border-gray-800 mt-10">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0 text-center md:text-left">
-                    <div class="text-2xl font-bold neon-text mb-3">Nguyễn Tất Ngọc</div>
-                    <div class="text-gray-400 mb-4">Full-stack Developer</div>
-                    <div class="flex space-x-6">
-                        <a href="mailto:nguyentatngoc110022@gmail.com"
-                            class="text-xl hover:text-blue-400 transition-all duration-300 hover:scale-110"
-                            title="Email">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                        <a href="https://github.com/Ngoc2204" target="_blank"
-                            class="text-xl hover:text-blue-400 transition-all duration-300 hover:scale-110"
-                            title="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
+    <!-- ===== EDUCATION ===== -->
+    <section id="education">
+        <div class="container">
+            <div class="section-label reveal">Education</div>
+            <h2 class="section-title reveal reveal-delay-1">Học vấn</h2>
+            <div class="edu-card reveal reveal-delay-2">
+                <div class="edu-logo-area">
+                    <div class="edu-logo-ring">
+                        <img src="assets/huit.png" alt="HUIT"
+                            onerror="this.parentElement.innerHTML='<span style=\'font-family:Syne,sans-serif;font-weight:800;font-size:22px;color:var(--accent-1);\'>HUIT</span>'">
                     </div>
+                    <div class="edu-year">2022 — 2026</div>
+                    <div class="edu-badge"><i class="fas fa-graduation-cap"></i> Loại Giỏi</div>
                 </div>
-
-                <div class="text-center md:text-right">
-                    <div class="text-gray-500 text-sm mb-2">
-                        &copy; 2026 Nguyễn Tất Ngọc. All rights reserved.
-                    </div>
-                    <div class="text-gray-600 text-sm">
-                        Designed with <i class="fas fa-heart text-red-400"></i> and <i
-                            class="fas fa-code text-blue-400"></i>
+                <div>
+                    <h3 class="edu-school">Đại học Công Thương TP.HCM</h3>
+                    <div class="edu-major">// Kỹ thuật Phần mềm · GPA 3.37/4.0</div>
+                    <p class="edu-desc">
+                        Chương trình đào tạo chuyên sâu về phát triển phần mềm, kiến trúc hệ thống và quy trình phát
+                        triển hiện đại. Tốt nghiệp loại Giỏi với nhiều dự án thực tế nổi bật trong suốt quá trình học.
+                    </p>
+                    <div class="edu-highlights">
+                        <div class="edu-highlight">
+                            <i class="fas fa-book"></i>
+                            <div class="edu-highlight-title">Kiến thức nền</div>
+                            <p>Phát triển phần mềm, CSDL, Kiến trúc hệ thống</p>
+                        </div>
+                        <div class="edu-highlight">
+                            <i class="fas fa-project-diagram"></i>
+                            <div class="edu-highlight-title">Dự án thực tế</div>
+                            <p>Khóa luận, NCKH cấp khoa, nhiều project lớn</p>
+                        </div>
+                        <div class="edu-highlight">
+                            <i class="fas fa-trophy"></i>
+                            <div class="edu-highlight-title">Thành tích</div>
+                            <p>NCKH vào chung kết cấp khoa CNTT</p>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-logo">Nguyễn Tất Ngọc</div>
+            <div class="footer-links">
+                <a href="mailto:nguyentatngoc110022@gmail.com" class="footer-link" title="Email"><i
+                        class="fas fa-envelope"></i></a>
+                <a href="https://github.com/Ngoc2204" target="_blank" class="footer-link" title="GitHub"><i
+                        class="fab fa-github"></i></a>
+
+                <a href="https://www.facebook.com/tat.ngoc.2004" target="_blank" class="text-..." title="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+            </div>
+            <div class="footer-copy">© 2026 — Designed with <i class="fas fa-heart" style="color:#ef4444;"></i></div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script>
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+        // Custom cursor
+        const dot = document.getElementById('cursorDot');
+        const ring = document.getElementById('cursorRing');
+        let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            mobileMenuBtn.innerHTML = mobileMenu.classList.contains('hidden')
-                ? '<i class="fas fa-bars"></i>'
-                : '<i class="fas fa-times"></i>';
+        document.addEventListener('mousemove', e => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            dot.style.left = mouseX + 'px';
+            dot.style.top = mouseY + 'px';
         });
 
-        // Close mobile menu when clicking a link
-        const mobileLinks = mobileMenu.querySelectorAll('a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            });
+        function animateRing() {
+            ringX += (mouseX - ringX) * 0.12;
+            ringY += (mouseY - ringY) * 0.12;
+            ring.style.left = ringX + 'px';
+            ring.style.top = ringY + 'px';
+            requestAnimationFrame(animateRing);
+        }
+        animateRing();
+
+        document.querySelectorAll('a, button, .stat-card, .project-card, .skill-card').forEach(el => {
+            el.addEventListener('mouseenter', () => ring.classList.add('hovered'));
+            el.addEventListener('mouseleave', () => ring.classList.remove('hovered'));
         });
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-                }
-            });
+        // Header scroll
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // Add fade-in-up animation to elements when scrolling
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in-up');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all sections and elements with fade-in-up class
-        document.querySelectorAll('section, .fade-in-up').forEach(element => {
-            observer.observe(element);
+        // Mobile menu
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
         });
-
-        // Animate skill bars when they come into view
-        const skillBarsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const skillBars = entry.target.querySelectorAll('.skill-progress');
-                    skillBars.forEach(bar => {
-                        // Trigger animation by re-setting the width
-                        const width = bar.style.width;
-                        bar.style.width = '0%';
-                        setTimeout(() => {
-                            bar.style.width = width;
-                        }, 300);
-                    });
-                }
-            });
-        }, { threshold: 0.3 });
-
-        // Observe skills section
-        const skillsSection = document.getElementById('skills');
-        if (skillsSection) {
-            skillBarsObserver.observe(skillsSection);
+        function closeMobile() {
+            hamburger.classList.remove('open');
+            mobileMenu.classList.remove('open');
         }
 
-        // Active menu item on scroll
-        function updateActiveMenu() {
-            const sections = document.querySelectorAll('section[id]');
-            const scrollPos = window.scrollY + 120; // Offset for header
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                const target = document.querySelector(a.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
 
+        // Reveal on scroll
+        const reveals = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('visible');
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+        reveals.forEach(el => revealObserver.observe(el));
+
+        // Active nav
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY + 120;
             sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                const sectionId = section.getAttribute('id');
-
-                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-                    // Update desktop menu
-                    document.querySelectorAll('.nav-link').forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === `#${sectionId}`) {
-                            link.classList.add('active');
-                        }
-                    });
-
-                    // Update mobile menu
-                    document.querySelectorAll('.mobile-nav-link').forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === `#${sectionId}`) {
-                            link.classList.add('active');
-                        }
-                    });
+                if (scrollY >= section.offsetTop && scrollY < section.offsetTop + section.clientHeight) {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    const active = document.querySelector(`.nav-link[href="#${section.id}"]`);
+                    if (active) active.classList.add('active');
                 }
-            });
-
-            // Check if at top of page
-            if (scrollPos < 100) {
-                document.querySelectorAll('.nav-link[href="#home"]').forEach(link => {
-                    link.classList.add('active');
-                });
-                document.querySelectorAll('.mobile-nav-link[href="#home"]').forEach(link => {
-                    link.classList.add('active');
-                });
-            }
-        }
-
-        // Update active menu on scroll
-        window.addEventListener('scroll', updateActiveMenu);
-        window.addEventListener('load', updateActiveMenu);
-
-        // Update active menu when clicking on menu items
-        document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
-            link.addEventListener('click', function () {
-                // Remove active class from all links
-                document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(l => {
-                    l.classList.remove('active');
-                });
-
-                // Add active class to clicked link
-                this.classList.add('active');
             });
         });
 
-        // Add initial animation to elements
+        // Hero reveals on load
         window.addEventListener('load', () => {
-            document.querySelectorAll('.fade-in-up').forEach(el => {
-                el.style.opacity = '1';
-                el.style.transform = 'translateY(0)';
+            document.querySelectorAll('#home .reveal').forEach((el, i) => {
+                setTimeout(() => el.classList.add('visible'), i * 150);
             });
         });
     </script>
