@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nguyễn Tất Ngọc | Hồ sơ Lập trình viên Full-stack</title>
+    <title>Nguyễn Tất Ngọc | Full-Stack Software Engineer (NestJS, Next.js, Laravel, Flutter)</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -646,6 +646,104 @@
             color: var(--accent-bronze-light);
         }
 
+        /* Interactive Eye View Counter */
+        .widget-card.widget-interactive {
+            cursor: pointer;
+            position: relative;
+            user-select: none;
+            overflow: visible;
+        }
+
+        .widget-card.widget-interactive:hover {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.25), inset 0 0 15px rgba(0, 242, 254, 0.15);
+        }
+
+        .widget-card.widget-interactive:active {
+            transform: scale(0.96) translateY(-4px);
+        }
+
+        .click-hint {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 10px;
+            font-family: 'Space Mono', monospace;
+            color: var(--accent-cyan);
+            background: rgba(0, 242, 254, 0.08);
+            border: 1px solid rgba(0, 242, 254, 0.25);
+            padding: 3px 8px;
+            border-radius: 20px;
+            margin-top: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .widget-card.widget-interactive:hover .click-hint {
+            background: rgba(0, 242, 254, 0.2);
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.35);
+        }
+
+        .plus-one-float {
+            position: absolute;
+            top: 5px;
+            right: 20px;
+            color: var(--accent-cyan);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 800;
+            font-size: 18px;
+            pointer-events: none;
+            text-shadow: 0 0 12px var(--accent-cyan);
+            animation: floatUpFade 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            z-index: 100;
+        }
+
+        @keyframes floatUpFade {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-50px) scale(1.4);
+            }
+        }
+
+        .eye-pulse {
+            animation: pulseEye 2.5s infinite ease-in-out;
+        }
+
+        @keyframes pulseEye {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); color: var(--accent-cyan); text-shadow: 0 0 8px var(--accent-cyan); }
+        }
+
+        .btn-views-badge {
+            background: rgba(0, 242, 254, 0.05);
+            border: 1px solid var(--border-cyan);
+            color: var(--accent-cyan);
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .btn-views-badge:hover {
+            background: rgba(0, 242, 254, 0.15);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 12px rgba(0, 242, 254, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-views-badge:active {
+            transform: scale(0.95);
+        }
+
         /* ======= PANEL 2: EXPERIENCE ======= */
         .panel-experience {
             /* Height flows naturally inside bento-left */
@@ -756,10 +854,11 @@
         .exp-bullet-list li {
             position: relative;
             padding-left: 16px;
-            font-size: 13px;
+            font-size: 12.5px;
             color: var(--text-secondary);
-            margin-bottom: 8px;
+            margin-bottom: 7px;
             font-weight: 300;
+            line-height: 1.55;
             font-family: 'Be Vietnam Pro', sans-serif;
         }
 
@@ -769,6 +868,81 @@
             left: 0;
             color: var(--accent-bronze);
             font-weight: bold;
+        }
+
+        .exp-subgroup {
+            margin-top: 14px;
+            margin-bottom: 8px;
+        }
+
+        .exp-subgroup-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: 0.3px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .exp-subgroup-title i {
+            font-size: 10px;
+            color: var(--accent-bronze-light);
+        }
+
+        .project-bullet-list {
+            list-style: none;
+            margin-bottom: 14px;
+        }
+
+        .project-bullet-list li {
+            position: relative;
+            padding-left: 14px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+            font-weight: 300;
+            line-height: 1.5;
+            font-family: 'Be Vietnam Pro', sans-serif;
+        }
+
+        .project-bullet-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent-cyan);
+            font-size: 11px;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+            margin-bottom: 6px;
+        }
+
+        .project-link-btn {
+            font-family: 'Space Mono', monospace;
+            font-size: 10.5px;
+            color: var(--accent-bronze-light);
+            text-decoration: none;
+            border: 1px solid var(--border-bronze);
+            padding: 4px 10px;
+            border-radius: 4px;
+            background: rgba(197, 160, 89, 0.04);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .project-link-btn:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            background: rgba(0, 242, 254, 0.08);
+            transform: translateY(-2px);
         }
 
         /* ======= PANEL 3: FEATURED PROJECTS ======= */
@@ -962,8 +1136,9 @@
             border-radius: 4px;
         }
 
-        /* ======= PANEL 4: TECHNICAL SKILLS ======= */
+        /* ======= PANEL 4: TECHNICAL SKILLS (SPAN 12) ======= */
         .panel-skills {
+            grid-column: span 12;
             position: relative;
         }
 
@@ -980,9 +1155,21 @@
         .skills-flow-container {
             position: relative;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             z-index: 2;
+        }
+
+        @media (max-width: 1024px) {
+            .skills-flow-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .skills-flow-container {
+                grid-template-columns: 1fr;
+            }
         }
 
         .skill-node {
@@ -1040,8 +1227,9 @@
             box-shadow: 0 4px 10px rgba(0, 242, 254, 0.08);
         }
 
-        /* ======= PANEL 5: CALL TO ACTION ======= */
+        /* ======= PANEL 5: CALL TO ACTION (SPAN 12) ======= */
         .panel-cta {
+            grid-column: span 12;
             display: grid;
             grid-template-columns: 1.3fr 0.7fr;
             gap: 24px;
@@ -1366,7 +1554,10 @@
                 <a href="#experience" class="nav-link">Kinh nghiệm</a>
                 <a href="#projects" class="nav-link">Dự án</a>
                 <a href="#skills" class="nav-link">Kỹ năng</a>
-                <a href="assets/NguyenTatNgoc_CV.pdf" target="_blank" class="btn-cv-header">Tải CV</a>
+                <button class="btn-views-badge" id="headerViewsBtn" title="Bấm vào mắt để tăng +1 lượt xem!">
+                    <i class="fas fa-eye eye-pulse"></i> <span class="views-num-sync">0</span>
+                </button>
+                <a href="assets/NGUYENTATNGOC_FULLSTACK.pdf" target="_blank" class="btn-cv-header">Tải CV</a>
             </nav>
             <button class="hamburger" id="hamburger">
                 <span></span><span></span>
@@ -1381,7 +1572,12 @@
         <a href="#experience" class="mobile-link">Kinh nghiệm</a>
         <a href="#projects" class="mobile-link">Dự án</a>
         <a href="#skills" class="mobile-link">Kỹ năng</a>
-        <a href="assets/NguyenTatNgoc_CV.pdf" target="_blank" class="mobile-link" style="color:var(--accent-bronze-light);">Tải CV</a>
+        <div style="display:flex; justify-content:space-between; align-items:center; padding-top:8px;">
+            <button class="btn-views-badge" id="mobileViewsBtn" title="Bấm vào mắt để tăng +1 lượt xem!">
+                <i class="fas fa-eye eye-pulse"></i> <span class="views-num-sync">0</span> Lượt xem
+            </button>
+            <a href="assets/NGUYENTATNGOC_FULLSTACK.pdf" target="_blank" class="btn-cv-header">Tải CV</a>
+        </div>
     </div>
 
     <!-- ===== MAIN BENTO CONTENT ===== -->
@@ -1390,12 +1586,15 @@
         <!-- PANEL 1: HERO & ABOUT (TOP ROW) -->
         <div class="panel panel-hero reveal-item delay-1" id="about">
             <div>
+                <div style="font-family:'Space Mono',monospace; font-size:12px; color:var(--accent-cyan); letter-spacing:1px; margin-bottom:10px; text-transform:uppercase;">
+                    Full-Stack Software Engineer
+                </div>
                 <h1 class="hero-serif-title">
                     Kiến tạo<br>
                     <span>Sản phẩm Số.</span>
                 </h1>
                 <p class="hero-viet-desc">
-                    Lập trình viên Full-stack chuyên sâu <strong>Laravel & Flutter</strong>, đam mê xây dựng mã nguồn sạch và thiết kế kiến trúc phần mềm bền vững. Sở hữu năng lực tự nghiên cứu độc lập để tích hợp dịch vụ bên thứ ba phức tạp và giải quyết hiệu quả các bài toán chịu tải, bảo mật thực tế.
+                    Kỹ sư Full-Stack với tư duy kiến trúc hệ thống vững vàng và năng lực làm chủ trọn vẹn vòng đời phát triển sản phẩm (SDLC). Thành thạo hệ sinh thái <strong>TypeScript (Next.js, NestJS, Turborepo)</strong>, <strong>PHP/Laravel</strong> và <strong>Flutter</strong>. Chuyên sâu về tối ưu cơ sở dữ liệu, xử lý hàng đợi bất đồng bộ (BullMQ/Redis), bảo mật dữ liệu cấp doanh nghiệp và tự động hóa triển khai CI/CD trên môi trường Linux/Docker.
                 </p>
                 <div class="hero-socials">
                     <a href="mailto:nguyentatngoc110022@gmail.com" class="hero-contact-icon" title="Email"><i class="fas fa-envelope"></i></a>
@@ -1442,12 +1641,12 @@
             <div class="stats-grid">
                 <!-- Widget 1 -->
                 <div class="widget-card">
-                    <div class="widget-header"><i class="fas fa-cog"></i> Dự án</div>
+                    <div class="widget-header"><i class="fas fa-cubes"></i> Dự án</div>
                     <div class="widget-value">4+</div>
                 </div>
                 <!-- Widget 2 -->
                 <div class="widget-card">
-                    <div class="widget-header"><i class="fas fa-chart-line"></i> GPA Giỏi</div>
+                    <div class="widget-header"><i class="fas fa-graduation-cap"></i> GPA Giỏi</div>
                     <div class="widget-value">3.37</div>
                 </div>
                 <!-- Widget 3 -->
@@ -1458,7 +1657,7 @@
                 <!-- Widget 4 -->
                 <div class="widget-card">
                     <div class="widget-header"><i class="fas fa-microchip"></i> Công nghệ</div>
-                    <div class="widget-value">10+</div>
+                    <div class="widget-value">15+</div>
                 </div>
             </div>
         </div>
@@ -1469,235 +1668,317 @@
             <div class="bento-left">
                 <!-- PANEL 2: EXPERIENCE -->
                 <div class="panel panel-experience reveal-item delay-3" id="experience">
-            <h2 class="panel-title"><i class="fas fa-history"></i> Kinh nghiệm thực chiến</h2>
-            
-            <!-- Company 1 -->
-            <div class="exp-card">
-                <div class="exp-card-header">
-                    <div class="exp-icon"><i class="fas fa-brain"></i></div>
-                    <div>
-                        <h4 class="exp-company">NOVA AI SOLUTIONS</h4>
-                        <span class="exp-period">04/2026 — Hiện tại</span>
-                    </div>
-                </div>
-                <div class="exp-role">Lập trình viên Full-stack (Solo)</div>
-                <ul class="exp-bullet-list">
-                    <li>Phát triển & vận hành hệ thống đặt lịch, thanh toán trực tuyến.</li>
-                    <li>Tích hợp các dịch vụ bên thứ ba: hóa đơn điện tử, cổng thanh toán, realtime notification.</li>
-                    <li>Xây dựng hệ thống phân quyền, chấm công, lưu trữ tập tin trên cloud.</li>
-                    <li>Quản lý hạ tầng máy chủ & triển khai sản phẩm lên production.</li>
-                </ul>
-            </div>
+                    <h2 class="panel-title"><i class="fas fa-history"></i> Kinh nghiệm thực chiến</h2>
+                    
+                    <!-- Company 1: NOVA AI SOLUTIONS -->
+                    <div class="exp-card">
+                        <div class="exp-card-header">
+                            <div class="exp-icon"><i class="fas fa-brain"></i></div>
+                            <div>
+                                <h4 class="exp-company">NOVA AI SOLUTIONS CO., LTD</h4>
+                                <span class="exp-period">04/2026 — Hiện tại · TP. Hồ Chí Minh</span>
+                            </div>
+                        </div>
+                        <div class="exp-role">Full-stack Developer (Sole Architect & Developer)</div>
+                        <p style="font-size:12px; color:var(--text-secondary); margin-bottom:12px; font-style:italic;">
+                            Chịu trách nhiệm thiết kế kiến trúc và triển khai trọn vẹn nhiều hệ thống kinh doanh trọng yếu từ con số 0.
+                        </p>
 
-            <!-- Company 2 -->
-            <div class="exp-card">
-                <div class="exp-card-header software">
-                    <div class="exp-icon"><i class="fas fa-shield-alt"></i></div>
-                    <div>
-                        <h4 class="exp-company">Phần mềm Quốc Bảo</h4>
-                        <span class="exp-period">06/2025 — 09/2025</span>
+                        <!-- Subgroup 1: E-commerce & Logistics -->
+                        <div class="exp-subgroup">
+                            <div class="exp-subgroup-title"><i class="fas fa-shopping-cart"></i> Nền tảng E-commerce & Logistics (B2C/B2B):</div>
+                            <ul class="exp-bullet-list">
+                                <li>Thiết kế Backend E-commerce mở rộng bằng Laravel & MySQL, xử lý trơn tru lưu lượng đơn hàng lớn.</li>
+                                <li>Tích hợp <strong>ViettelPost API</strong>, tự động hóa 100% quy trình vận đơn, cập nhật trạng thái thời gian thực và loại bỏ nhập liệu thủ công.</li>
+                                <li>Phát triển luồng thanh toán an toàn, bảo mật qua <strong>VNPay</strong> và <strong>ZaloPay RESTful APIs</strong>.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Subgroup 2: QR-Order SaaS & Internal Tools -->
+                        <div class="exp-subgroup">
+                            <div class="exp-subgroup-title"><i class="fas fa-qrcode"></i> Nền tảng QR-Order SaaS & Công cụ Nội bộ:</div>
+                            <ul class="exp-bullet-list">
+                                <li>Xây dựng hệ thống đặt chỗ đa người thuê (Multi-tenant booking) và tích hợp <strong>Hóa đơn điện tử VNPT (SOAP/XML)</strong>, tự động xuất hóa đơn thuế điện tử.</li>
+                                <li>Phát triển module chấm công định vị (Geofencing) và động cơ thông báo tức thời qua <strong>Pusher WebSockets</strong>.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Subgroup 3: Infrastructure & Security -->
+                        <div class="exp-subgroup">
+                            <div class="exp-subgroup-title"><i class="fas fa-server"></i> Hạ tầng & Bảo mật:</div>
+                            <ul class="exp-bullet-list">
+                                <li>Chuyển dịch lưu trữ tệp tin nhạy cảm sang <strong>AWS S3 Private Storage</strong> với Pre-signed URLs & mã hóa AES.</li>
+                                <li>Vận hành triển khai zero-downtime trên môi trường máy chủ Linux VPS (Nginx & Apache).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Company 2: QUOC BAO SOFTWARE -->
+                    <div class="exp-card">
+                        <div class="exp-card-header software">
+                            <div class="exp-icon"><i class="fas fa-shield-alt"></i></div>
+                            <div>
+                                <h4 class="exp-company">QUOC BAO SOFTWARE CO., LTD</h4>
+                                <span class="exp-period">06/2025 — 09/2025 · TP. Hồ Chí Minh</span>
+                            </div>
+                        </div>
+                        <div class="exp-role">Mobile Developer Intern</div>
+                        <ul class="exp-bullet-list">
+                            <li>Xây dựng tính năng mobile đa nền tảng (Android/iOS) vững chắc bằng <strong>Flutter</strong> và <strong>GetX</strong>.</li>
+                            <li>Thiết kế UI responsive thân thiện, kết nối và tiêu thụ RESTful APIs tối ưu độ trễ đồng bộ dữ liệu.</li>
+                            <li>Làm việc theo quy trình Agile/Scrum, trao đổi kỹ thuật về thiết kế API endpoint.</li>
+                        </ul>
                     </div>
                 </div>
-                <div class="exp-role">Lập trình viên Mobile (Intern)</div>
-                <ul class="exp-bullet-list">
-                    <li>Xây dựng app Android/iOS bằng Flutter & Dart.</li>
-                    <li>Thiết kế UI responsive thân thiện, kết nối API qua GetX state.</li>
-                    <li>Phối hợp theo quy trình Agile/Scrum để thiết kế cấu trúc API.</li>
-                </ul>
-            </div>
-        </div>
             </div> <!-- End bento-left -->
             
             <!-- Right Column: Projects, Skills, CTA (7/12 columns) -->
             <div class="bento-right">
                 <!-- PANEL 3: FEATURED PROJECTS (RIGHT TOP) -->
                 <div class="panel panel-projects reveal-item delay-4" id="projects">
-            <h2 class="panel-title"><i class="fas fa-project-diagram"></i> Dự án tiêu biểu</h2>
-            <div class="projects-wrapper">
-                
-                <!-- Uply Project Screen -->
-                <div class="project-screen project-screen-large">
-                    <div class="screen-titlebar">
-                        <div class="screen-dots">
-                            <span class="screen-dot"></span>
-                            <span class="screen-dot"></span>
-                            <span class="screen-dot"></span>
-                        </div>
-                        <span class="screen-label">uply_monitor.sys</span>
-                    </div>
-                    <div class="screen-body">
-                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-                            <h3 class="screen-project-title">Uply - Website & API Monitoring Platform</h3>
-                            <span class="project-label">SaaS</span>
-                        </div>
-                        <p class="screen-project-desc">
-                            Hệ thống theo dõi website & API theo thời gian thực. Worker tự động kiểm tra HTTP theo chu kỳ, phát hiện downtime, quản lý incident & gửi email thông báo. Hỗ trợ multi-tenancy, RBAC, dashboard trực quan & client portal chỉ đọc.
-                        </p>
-                        <!-- Control panel simulation widget -->
-                        <div class="control-panel-widget">
-                            <div class="widget-row">
-                                <span>STATUS: 200 OK</span>
-                                <span class="widget-status">UPTIME 99.5%</span>
+                    <h2 class="panel-title"><i class="fas fa-project-diagram"></i> Dự án tiêu biểu</h2>
+                    <div class="projects-wrapper">
+                        
+                        <!-- Uply Project Screen (Large Span 2) -->
+                        <div class="project-screen project-screen-large">
+                            <div class="screen-titlebar">
+                                <div class="screen-dots">
+                                    <span class="screen-dot"></span>
+                                    <span class="screen-dot"></span>
+                                    <span class="screen-dot"></span>
+                                </div>
+                                <span class="screen-label">uply_cloud_platform.sys</span>
                             </div>
-                            <div class="widget-row">
-                                <span>INCIDENT CUỐI</span>
-                                <span style="color:#e5c185;">ĐÃ XỬ LÝ</span>
-                            </div>
-                            <div class="widget-progress-container">
-                                <div class="widget-progress" style="width: 100%;"></div>
+                            <div class="screen-body">
+                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; flex-wrap:wrap; gap:8px;">
+                                    <h3 class="screen-project-title" style="margin-bottom:0;">UPLY – Multi-Tenant Website & API Monitoring Platform</h3>
+                                    <span class="badge" style="border-color:var(--accent-cyan); color:var(--accent-cyan); font-weight:600;">SaaS Monorepo · 2026</span>
+                                </div>
+                                <p class="screen-project-desc">
+                                    Nền tảng SaaS đa người thuê (Multi-tenant) cho phép các doanh nghiệp & agency giám sát uptime dịch vụ HTTP 24/7 và thực thi kịch bản kiểm thử API nhiều bước (multi-step API journeys) với cơ chế cảnh báo sự cố tự động.
+                                </p>
+                                
+                                <ul class="project-bullet-list">
+                                    <li><strong>Kiến trúc Monorepo (Turborepo):</strong> Tách biệt Web Dashboard (Next.js), REST API (NestJS) và Autonomous Background Worker.</li>
+                                    <li><strong>High-throughput Job Queue:</strong> Hàng đợi BullMQ + Redis lập lịch health check định kỳ & thực thi assertions với độ trễ sub-second.</li>
+                                    <li><strong>Bảo mật & Phân lập Dữ liệu:</strong> Mã hóa <strong>AES-256-GCM</strong> cho API credentials, signed HttpOnly cookies, và Row-level Multi-tenancy trên PostgreSQL qua <strong>Prisma ORM</strong>.</li>
+                                    <li><strong>DevOps & Containerization:</strong> Đóng gói Docker Compose, reverse proxy Caddy (Auto SSL) và zero-downtime bash deployment pipelines.</li>
+                                </ul>
+
+                                <!-- Control panel simulation widget -->
+                                <div class="control-panel-widget">
+                                    <div class="widget-row">
+                                        <span>STATUS: 200 OK (SUB-SECOND LATENCY)</span>
+                                        <span class="widget-status">UPTIME 99.9%</span>
+                                    </div>
+                                    <div class="widget-row">
+                                        <span>AUTOMATED ALERTS</span>
+                                        <span style="color:#e5c185;"><i class="fas fa-bell"></i> ACTIVE DISPATCH</span>
+                                    </div>
+                                    <div class="widget-progress-container">
+                                        <div class="widget-progress" style="width: 100%;"></div>
+                                    </div>
+                                </div>
+
+                                <div class="tech-badges">
+                                    <span class="badge">Turborepo</span>
+                                    <span class="badge">NestJS</span>
+                                    <span class="badge">Next.js</span>
+                                    <span class="badge">BullMQ & Redis</span>
+                                    <span class="badge">PostgreSQL</span>
+                                    <span class="badge">Prisma ORM</span>
+                                    <span class="badge">Docker Compose</span>
+                                    <span class="badge">Caddy</span>
+                                    <span class="badge">AES-256-GCM</span>
+                                </div>
+
+                                <div class="project-links">
+                                    <a href="https://github.com/Ngoc2204" target="_blank" class="project-link-btn"><i class="fab fa-github"></i> Mã nguồn GitHub</a>
+                                </div>
                             </div>
                         </div>
-                        <div class="tech-badges">
-                            <span class="badge">NestJS</span>
-                            <span class="badge">Next.js</span>
-                            <span class="badge">PostgreSQL</span>
-                            <span class="badge">Redis</span>
-                            <span class="badge">Docker</span>
+
+                        <!-- Graduation Project Screen -->
+                        <div class="project-screen">
+                            <div class="screen-titlebar">
+                                <div class="screen-dots">
+                                    <span class="screen-dot"></span>
+                                    <span class="screen-dot"></span>
+                                    <span class="screen-dot"></span>
+                                </div>
+                                <span class="screen-label">academic_conduct_huit.edu</span>
+                            </div>
+                            <div class="screen-body">
+                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                                    <h3 class="screen-project-title" style="margin-bottom:0;">Hệ thống QL Điểm rèn luyện</h3>
+                                    <span class="badge" style="color:var(--accent-bronze-light);">Khóa luận 2025</span>
+                                </div>
+                                <p class="screen-project-desc">
+                                    Đảm nhiệm vai trò <strong>Lead Developer</strong>, dẫn dắt đội ngũ số hóa toàn bộ quy trình đánh giá điểm rèn luyện của trường đại học với Web Admin dashboard và Flutter mobile app.
+                                </p>
+                                <div class="control-panel-widget" style="padding:8px 12px; margin-bottom:12px;">
+                                    <div class="widget-row" style="margin-bottom:0;">
+                                        <span>ĐIỂM BẢO VỆ KHÓA LUẬN</span>
+                                        <span style="color:#00f2fe;font-weight:bold;">8.8 / 10.0</span>
+                                    </div>
+                                </div>
+                                <div class="tech-badges" style="margin-top:auto;">
+                                    <span class="badge">Laravel</span>
+                                    <span class="badge">Flutter</span>
+                                    <span class="badge">MySQL</span>
+                                    <span class="badge">REST API</span>
+                                    <span class="badge">GetX</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/Ngoc2204" target="_blank" class="project-link-btn"><i class="fab fa-github"></i> GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Research Project Screen -->
+                        <div class="project-screen">
+                            <div class="screen-titlebar">
+                                <div class="screen-dots">
+                                    <span class="screen-dot"></span>
+                                    <span class="screen-dot"></span>
+                                    <span class="screen-dot"></span>
+                                </div>
+                                <span class="screen-label">ai_recommendation_ml.huit</span>
+                            </div>
+                            <div class="screen-body">
+                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                                    <h3 class="screen-project-title" style="margin-bottom:0;">Gợi ý hoạt động bằng ML</h3>
+                                    <span class="badge" style="color:var(--accent-cyan);">NCKH</span>
+                                </div>
+                                <p class="screen-project-desc">
+                                    Đề tài Nghiên cứu Khoa học ứng dụng Machine Learning để phân tích sở thích và cá nhân hóa gợi ý hoạt động ngoại khóa cho sinh viên. Lọt vào vòng <strong>Chung kết cấp khoa CNTT HUIT</strong>.
+                                </p>
+                                <div class="control-panel-widget" style="padding:8px 12px; margin-bottom:12px;">
+                                    <div class="widget-row" style="margin-bottom:0;">
+                                        <span>THÀNH TÍCH ĐẠT ĐƯỢC</span>
+                                        <span style="color:var(--accent-bronze-light);font-weight:bold;">CHUNG KẾT KHOA CNTT</span>
+                                    </div>
+                                </div>
+                                <div class="tech-badges" style="margin-top:auto;">
+                                    <span class="badge">Python</span>
+                                    <span class="badge">Scikit-learn</span>
+                                    <span class="badge">Pandas</span>
+                                    <span class="badge">ML Algorithms</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div> <!-- End bento-right -->
+        </div> <!-- End bento-container -->
 
-                <!-- Graduation Project Screen -->
-                <div class="project-screen">
-                    <div class="screen-titlebar">
-                        <div class="screen-dots">
-                            <span class="screen-dot"></span>
-                            <span class="screen-dot"></span>
-                            <span class="screen-dot"></span>
-                        </div>
-                        <span class="screen-label">academic_huit.edu</span>
-                    </div>
-                    <div class="screen-body">
-                        <h3 class="screen-project-title">Hệ thống QL Điểm rèn luyện & CTXH</h3>
-                        <p class="screen-project-desc">
-                            Đồ án tốt nghiệp đạt điểm số **8.8/10**. Bao gồm trang quản trị Web Admin và ứng dụng di động Flutter giúp số hóa toàn bộ quy trình chấm điểm rèn luyện.
-                        </p>
-                        <div class="control-panel-widget" style="padding:8px 12px; margin-bottom:12px;">
-                            <div class="widget-row" style="margin-bottom:0;">
-                                <span>ĐIỂM KHÓA LUẬN</span>
-                                <span style="color:#00f2fe;font-weight:bold;">8.8 / 10.0</span>
-                            </div>
-                        </div>
-                        <div class="tech-badges" style="margin-top:auto;">
-                            <span class="badge">Laravel</span>
-                            <span class="badge">Flutter</span>
-                            <span class="badge">REST API</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Research Project Screen -->
-                <div class="project-screen">
-                    <div class="screen-titlebar">
-                        <div class="screen-dots">
-                            <span class="screen-dot"></span>
-                            <span class="screen-dot"></span>
-                            <span class="screen-dot"></span>
-                        </div>
-                        <span class="screen-label">ml_recommend_v1.ai</span>
-                    </div>
-                    <div class="screen-body">
-                        <h3 class="screen-project-title">Gợi ý hoạt động ngoại khóa bằng ML</h3>
-                        <p class="screen-project-desc">
-                            Nghiên cứu khoa học áp dụng Machine Learning cá nhân hóa gợi ý hoạt động cho sinh viên. Đạt vòng chung kết cấp khoa CNTT trường HUIT.
-                        </p>
-                        <div class="control-panel-widget" style="padding:8px 12px; margin-bottom:12px;">
-                            <div class="widget-row" style="margin-bottom:0;">
-                                <span>KẾT QUẢ ĐẠT ĐƯỢC</span>
-                                <span style="color:var(--accent-bronze-light);font-weight:bold;">CHUNG KẾT HUIT</span>
-                            </div>
-                        </div>
-                        <div class="tech-badges" style="margin-top:auto;">
-                            <span class="badge">Python</span>
-                            <span class="badge">ML</span>
-                            <span class="badge">Pandas</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- PANEL 4: TECHNICAL SKILLS (RIGHT MIDDLE) -->
+        <!-- PANEL 4: TECHNICAL SKILLS (FULL WIDTH SPAN 12) -->
         <div class="panel panel-skills reveal-item delay-5" id="skills">
             <h2 class="panel-title"><i class="fas fa-microchip"></i> Kỹ năng chuyên môn</h2>
             
             <!-- Organic flow connection lines (SVG) -->
-            <svg class="skills-flow-lines" viewBox="0 0 500 300" preserveAspectRatio="none">
-                <path class="flow-line" d="M 120 70 Q 250 150 380 70" fill="none" stroke="url(#bronze-cyan-grad)" stroke-width="1.5" stroke-dasharray="6 12" />
-                <path class="flow-line reverse" d="M 120 220 Q 250 150 380 220" fill="none" stroke="url(#bronze-cyan-grad)" stroke-width="1.2" stroke-dasharray="8 14" />
-                <path class="flow-line" d="M 250 20 L 250 280" fill="none" stroke="rgba(197, 160, 89, 0.15)" stroke-width="1" />
+            <svg class="skills-flow-lines" viewBox="0 0 1000 300" preserveAspectRatio="none">
+                <path class="flow-line" d="M 150 70 Q 500 150 850 70" fill="none" stroke="url(#bronze-cyan-grad)" stroke-width="1.5" stroke-dasharray="6 12" />
+                <path class="flow-line reverse" d="M 150 220 Q 500 150 850 220" fill="none" stroke="url(#bronze-cyan-grad)" stroke-width="1.2" stroke-dasharray="8 14" />
+                <path class="flow-line" d="M 500 20 L 500 280" fill="none" stroke="rgba(197, 160, 89, 0.15)" stroke-width="1" />
             </svg>
             
             <div class="skills-flow-container">
-                <!-- Cluster 1: Backend -->
+                <!-- Cluster 1: Backend & Architecture -->
                 <div class="skill-node">
-                    <h4 class="skill-node-title"><i class="fas fa-server"></i> Backend</h4>
+                    <h4 class="skill-node-title"><i class="fas fa-server"></i> Backend & Kiến trúc</h4>
                     <div class="skill-tags">
-                        <span class="skill-tag">PHP</span>
-                        <span class="skill-tag">Laravel</span>
-                        <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">REST API / SOAP</span>
-                        <span class="skill-tag">Java / C#</span>
+                        <span class="skill-tag">NestJS</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Laravel / PHP</span>
+                        <span class="skill-tag">Turborepo</span>
+                        <span class="skill-tag">BullMQ Workers</span>
+                        <span class="skill-tag">Microservices</span>
                     </div>
                 </div>
 
-                <!-- Cluster 2: Mobile -->
+                <!-- Cluster 2: Frontend & UI -->
                 <div class="skill-node">
-                    <h4 class="skill-node-title"><i class="fas fa-mobile-alt"></i> Mobile</h4>
+                    <h4 class="skill-node-title"><i class="fas fa-laptop-code"></i> Frontend & UI</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Next.js</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">Tailwind CSS</span>
+                        <span class="skill-tag">Blade Template</span>
+                        <span class="skill-tag">HTML5 / CSS3</span>
+                    </div>
+                </div>
+
+                <!-- Cluster 3: Mobile Development -->
+                <div class="skill-node">
+                    <h4 class="skill-node-title"><i class="fas fa-mobile-alt"></i> Lập trình Mobile</h4>
                     <div class="skill-tags">
                         <span class="skill-tag">Flutter</span>
                         <span class="skill-tag">Dart</span>
-                        <span class="skill-tag">GetX / Provider</span>
-                        <span class="skill-tag">Background Tasks</span>
+                        <span class="skill-tag">GetX State</span>
                         <span class="skill-tag">Geofencing</span>
+                        <span class="skill-tag">Cross-platform</span>
                     </div>
                 </div>
 
-                <!-- Cluster 3: Dev & Cloud -->
+                <!-- Cluster 4: Database & Caching -->
                 <div class="skill-node">
-                    <h4 class="skill-node-title"><i class="fas fa-cloud"></i> Hạ tầng & Cloud</h4>
+                    <h4 class="skill-node-title"><i class="fas fa-database"></i> Database & Cache</h4>
                     <div class="skill-tags">
-                        <span class="skill-tag">Git / GitHub</span>
-                        <span class="skill-tag">AWS S3</span>
-                        <span class="skill-tag">VPS / Linux</span>
-                        <span class="skill-tag">Server Migration</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">Prisma ORM</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">Redis Cache & Queue</span>
+                        <span class="skill-tag">Row-level Multi-tenancy</span>
+                    </div>
+                </div>
+
+                <!-- Cluster 5: Cloud, DevOps & Security -->
+                <div class="skill-node">
+                    <h4 class="skill-node-title"><i class="fas fa-cloud"></i> Cloud, DevOps & Bảo mật</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Docker Compose</span>
+                        <span class="skill-tag">Linux VPS</span>
                         <span class="skill-tag">Nginx / Apache</span>
+                        <span class="skill-tag">Caddy Reverse Proxy</span>
+                        <span class="skill-tag">AWS S3 (Private)</span>
+                        <span class="skill-tag">AES-256-GCM</span>
                     </div>
                 </div>
 
-                <!-- Cluster 4: Data Science -->
+                <!-- Cluster 6: Integrations & Languages -->
                 <div class="skill-node">
-                    <h4 class="skill-node-title"><i class="fas fa-brain"></i> Khoa học Dữ liệu</h4>
+                    <h4 class="skill-node-title"><i class="fas fa-plug"></i> Tích hợp & Tiếng Anh</h4>
                     <div class="skill-tags">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Machine Learning</span>
-                        <span class="skill-tag">Pandas</span>
-                        <span class="skill-tag">Scikit-learn</span>
-                        <span class="skill-tag">Data Processing</span>
+                        <span class="skill-tag">VNPay / ZaloPay</span>
+                        <span class="skill-tag">ViettelPost API</span>
+                        <span class="skill-tag">VNPT E-Invoice (SOAP)</span>
+                        <span class="skill-tag">Pusher WebSockets</span>
+                        <span class="skill-tag">Python / ML</span>
+                        <span class="skill-tag">English Docs</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- PANEL 5: CALL TO ACTION (RIGHT BOTTOM) -->
+        <!-- PANEL 5: CALL TO ACTION (FULL WIDTH SPAN 12) -->
         <div class="panel panel-cta reveal-item delay-6">
             <div class="cta-calligraphy">
                 "Kiến trúc hiệu năng.<br>
                 Kiến tạo tỉ mỉ."
-                <span>Nguyễn Tất Ngọc // Lập trình viên Full-stack</span>
+                <span>Nguyễn Tất Ngọc // Full-Stack Software Engineer</span>
             </div>
             <div class="cta-avatar-wrapper">
                 <div class="cta-avatar">
                     <img src="assets/img.jpg" alt="Nguyễn Tất Ngọc">
                 </div>
                 <div class="cta-contacts">
-                    <a href="mailto:nguyentatngoc110022@gmail.com" class="cta-link">Liên hệ Email</a>
-                    <a href="tel:0382583723" class="cta-link">0382 583 723</a>
+                    <a href="mailto:nguyentatngoc110022@gmail.com" class="cta-link"><i class="fas fa-envelope"></i> nguyentatngoc110022@gmail.com</a>
+                    <a href="tel:0382583723" class="cta-link"><i class="fas fa-phone"></i> 0382 583 723</a>
                 </div>
             </div>
         </div>
-            </div> <!-- End bento-right -->
-        </div> <!-- End bento-container -->
 
         <!-- PANEL 6: EDUCATION (BOTTOM SPAN 12) -->
         <div class="panel panel-education reveal-item delay-7" id="education">
@@ -1706,10 +1987,10 @@
                 <span class="fallback-logo" style="display:none;font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--text-muted);">HUIT</span>
             </div>
             <div>
-                <h3 class="edu-school">Trường Đại học Công Thương TP.HCM</h3>
-                <div class="edu-major">// Kỹ thuật Phần mềm · Tốt nghiệp loại Giỏi (GPA 3.37/4.00)</div>
+                <h3 class="edu-school">Trường Đại học Công Thương TP.HCM (HUIT)</h3>
+                <div class="edu-major">// Kỹ sư Kỹ thuật Phần mềm · Tốt nghiệp loại Giỏi (GPA 3.37 / 4.00 · 10/2022 – 01/2026)</div>
                 <p class="edu-desc">
-                    Học vấn chuyên sâu về lập trình hướng đối tượng, kiến trúc phần mềm, cấu trúc dữ liệu giải thuật, quản trị cơ sở dữ liệu và quy trình Scrum/Agile. Có kỹ năng tự nghiên cứu, đọc hiểu và sử dụng tốt tài liệu chuyên ngành bằng tiếng Anh.
+                    Tốt nghiệp chuyên ngành Kỹ thuật Phần mềm loại Giỏi. Đề tài Nghiên cứu Khoa học được tuyển chọn vào vòng chung kết cấp khoa CNTT. Nền tảng học thuật vững vàng về kiến trúc phần mềm hướng dịch vụ, cấu trúc dữ liệu giải thuật, thiết kế cơ sở dữ liệu quan hệ và quy trình Scrum/Agile. Có năng lực tự nghiên cứu, đọc hiểu và áp dụng tài liệu kỹ thuật chuyên ngành tiếng Anh.
                 </p>
             </div>
         </div>
@@ -1719,7 +2000,7 @@
     <!-- ===== FOOTER ===== -->
     <footer>
         <div class="footer-logo">Nguyen Tat Ngoc<span>.</span></div>
-        <div class="footer-copy">© 2026 — Thiết kế cho trải nghiệm số xuất sắc.</div>
+        <div class="footer-copy">© 2026 — Full-Stack Software Engineer Portfolio.</div>
     </footer>
 
     <!-- Carousel & Nav Javascript -->
@@ -1938,6 +2219,99 @@
         document.querySelectorAll('.reveal-item').forEach(item => {
             revealObserver.observe(item);
         });
+
+        // ===== REAL GLOBAL EYE VIEW COUNTER (GITHUB PAGES COMPATIBLE) =====
+        const COUNTER_API_HIT = 'https://abacus.jasoncameron.dev/hit/ngoc2204-github-io/views';
+        const COUNTER_API_GET = 'https://abacus.jasoncameron.dev/get/ngoc2204-github-io/views';
+        const STORAGE_KEY = 'portfolio_real_views_ngoc';
+
+        function formatNumber(num) {
+            return Number(num).toLocaleString('en-US');
+        }
+
+        let currentViews = parseInt(localStorage.getItem(STORAGE_KEY), 10) || 0;
+
+        function updateViewsUI(val) {
+            if (val !== undefined && !isNaN(val)) {
+                currentViews = val;
+                localStorage.setItem(STORAGE_KEY, currentViews);
+            }
+            const formatted = formatNumber(currentViews);
+            document.querySelectorAll('.views-num-sync').forEach(el => {
+                el.textContent = formatted;
+            });
+        }
+
+        // 1. Initial Page Load: Increment global views count on real visit
+        async function fetchInitialViews() {
+            try {
+                const hasVisited = sessionStorage.getItem('visited_session_ngoc');
+                const apiUrl = hasVisited ? COUNTER_API_GET : COUNTER_API_HIT;
+                
+                const res = await fetch(apiUrl);
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && data.value !== undefined) {
+                        sessionStorage.setItem('visited_session_ngoc', '1');
+                        updateViewsUI(data.value);
+                    }
+                }
+            } catch (err) {
+                console.warn('Live counter sync offline, using local cache:', err);
+                updateViewsUI();
+            }
+        }
+
+        function spawnPlusOne(targetEl) {
+            const plusOne = document.createElement('span');
+            plusOne.className = 'plus-one-float';
+            plusOne.innerHTML = '+1 <i class="fas fa-eye" style="font-size:12px;"></i>';
+            targetEl.appendChild(plusOne);
+            setTimeout(() => {
+                plusOne.remove();
+            }, 900);
+        }
+
+        // 2. Click-to-increment: Instant UI response + Live Cloud increment
+        async function handleViewIncrement(e) {
+            currentViews += 1;
+            updateViewsUI(currentViews);
+
+            const targetEl = e.currentTarget;
+            spawnPlusOne(targetEl);
+
+            try {
+                const res = await fetch(COUNTER_API_HIT);
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && data.value !== undefined) {
+                        updateViewsUI(data.value);
+                    }
+                }
+            } catch (err) {
+                console.warn('Sync increment failed:', err);
+            }
+        }
+
+        // Render initial count & fetch live global views
+        updateViewsUI();
+        fetchInitialViews();
+
+        // Attach click listeners
+        const viewsCard = document.getElementById('viewsCard');
+        if (viewsCard) {
+            viewsCard.addEventListener('click', handleViewIncrement);
+        }
+
+        const headerViewsBtn = document.getElementById('headerViewsBtn');
+        if (headerViewsBtn) {
+            headerViewsBtn.addEventListener('click', handleViewIncrement);
+        }
+
+        const mobileViewsBtn = document.getElementById('mobileViewsBtn');
+        if (mobileViewsBtn) {
+            mobileViewsBtn.addEventListener('click', handleViewIncrement);
+        }
     </script>
 </body>
 
